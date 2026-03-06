@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import EmptyState from "@/components/EmptyState.astro";
+import GalleryAlbumCard from "@/components/GalleryAlbumCard.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { sortByDateDesc } from "@/lib/utils";
+
+const albums = sortByDateDesc(await getCollection("galleryAlbums"));
+---
+
+<MainLayout title="TSAB Gallery">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Gallery"
+        title="A clean archive for albums, recaps, and visual memory."
+        copy="Gallery pages are organized by album so the homepage stays focused while the archive remains easy to browse."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      {albums.length > 0 ? (
+        <div class="listing-grid two-up">
+          {albums.map((album) => <GalleryAlbumCard album={album} />)}
+        </div>
+      ) : (
+        <EmptyState
+          title="No gallery albums yet"
+          copy="Add gallery album entries and corresponding image files to start building the public archive."
+        />
+      )}
+    </div>
+  </section>
+</MainLayout>

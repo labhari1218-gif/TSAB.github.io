@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import GroupCard from "@/components/GroupCard.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+
+const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+---
+
+<MainLayout title="TSAB Working Groups">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Working Groups"
+        title="Clear public pathways matter more than hidden coordination chats."
+        copy="These four groups explain how TSAB functions publicly and how members can plug in based on interest, skill, and availability."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      <div class="listing-grid two-up">
+        {groups.map((group) => <GroupCard group={group} />)}
+      </div>
+    </div>
+  </section>
+</MainLayout>

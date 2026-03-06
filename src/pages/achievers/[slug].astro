@@ -1,0 +1,94 @@
+---
+import { getCollection, render } from "astro:content";
+import CalloutPanel from "@/components/CalloutPanel.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { withBase } from "@/lib/site";
+
+export async function getStaticPaths() {
+  const achievers = await getCollection("achievers");
+  return achievers.map((achiever) => ({
+    params: { slug: achiever.slug },
+    props: { achiever }
+  }));
+}
+
+const { achiever } = Astro.props;
+const { Content } = await render(achiever);
+---
+
+<MainLayout title={`${achiever.data.name} | TSAB Achievers`} description={achiever.data.summary}>
+  <section class="page-section">
+    <div class="shell detail-shell">
+      <img class="portrait" src={withBase(achiever.data.photo)} alt="" />
+      <div class="surface-panel">
+        <div class="eyebrow">Featured Story</div>
+        <h1>{achiever.data.name}</h1>
+        <p class="meta">{achiever.data.institute}</p>
+        <p class="meta">{achiever.data.achievementTitle}</p>
+        <p class="summary">{achiever.data.summary}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <CalloutPanel
+        eyebrow="Visibility"
+        title="Use achiever posts to celebrate real milestones, not generic praise."
+        copy="Each story should explain what the member did, why it matters, and how the wider TSAB community can learn from it."
+        primaryHref={withBase(achiever.data.externalUrl ?? "/join/")}
+        primaryLabel={achiever.data.externalUrl ? "Open External Link" : "Nominate an Achiever"}
+        secondaryHref="/achievers/"
+        secondaryLabel="More Stories"
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .detail-shell {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .portrait {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(21, 58, 120, 0.12);
+    box-shadow: var(--shadow-card);
+    background: linear-gradient(145deg, rgba(21, 58, 120, 0.24), rgba(214, 163, 58, 0.18));
+  }
+
+  h1 {
+    margin: 0.8rem 0 0;
+    max-width: 11ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 0.95;
+  }
+
+  .meta {
+    margin: 0.3rem 0 0;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .summary {
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 900px) {
+    .detail-shell {
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+  }
+</style>

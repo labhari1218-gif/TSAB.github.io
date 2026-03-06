@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from "astro:content";
+import CalloutPanel from "@/components/CalloutPanel.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { withBase } from "@/lib/site";
+import { formatDate } from "@/lib/utils";
+
+export async function getStaticPaths() {
+  const opportunities = await getCollection("opportunities");
+  return opportunities.map((opportunity) => ({
+    params: { slug: opportunity.slug },
+    props: { opportunity }
+  }));
+}
+
+const { opportunity } = Astro.props;
+const { Content } = await render(opportunity);
+---
+
+<MainLayout title={`${opportunity.data.title} | TSAB Opportunities`} description={opportunity.data.summary}>
+  <section class="page-section">
+    <div class="shell detail-shell">
+      <div class="surface-panel">
+        <div class="eyebrow">{opportunity.data.category}</div>
+        <h1>{opportunity.data.title}</h1>
+        <p class="organization">{opportunity.data.organization}</p>
+        {opportunity.data.deadline && <p class="deadline">Deadline: {formatDate(opportunity.data.deadline)}</p>}
+        <p class="summary">{opportunity.data.summary}</p>
+      </div>
+      <aside class="card info-card">
+        <h2>Publishing note</h2>
+        <p>
+          This starter content is intentionally easy to replace. Keep only curated, relevant opportunities
+          that are useful to Telugu students in Bhopal.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <CalloutPanel
+        eyebrow="Apply"
+        title="Use the original source link for the real application flow."
+        copy="Opportunity posts should stay concise on the website and direct members to the authoritative source for forms, deadlines, and official instructions."
+        primaryHref={withBase(opportunity.data.sourceUrl)}
+        primaryLabel="Open Source Link"
+        secondaryHref="/opportunities/"
+        secondaryLabel="Back to Opportunities"
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .detail-shell {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  h1 {
+    margin: 0.8rem 0 0;
+    max-width: 12ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: 0.95;
+  }
+
+  .organization,
+  .deadline {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .summary,
+  .info-card p {
+    color: var(--color-muted);
+  }
+
+  .info-card {
+    padding: 1.4rem;
+  }
+
+  .info-card h2 {
+    margin: 0 0 0.6rem;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  @media (min-width: 900px) {
+    .detail-shell {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+</style>

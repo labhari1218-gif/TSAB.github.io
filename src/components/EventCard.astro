@@ -1,0 +1,70 @@
+---
+import { withBase } from "@/lib/site";
+import { formatDate } from "@/lib/utils";
+
+interface Props {
+  event: {
+    slug: string;
+    data: {
+      title: string;
+      date: string;
+      location: string;
+      summary: string;
+      coverImage: string;
+      tags: string[];
+      status: "upcoming" | "past";
+    };
+  };
+}
+
+const { event } = Astro.props;
+---
+
+<article class="card event-card">
+  <img src={withBase(event.data.coverImage)} alt="" />
+  <div class="content">
+    <p class="meta">{formatDate(event.data.date)} · {event.data.location}</p>
+    <h3><a href={withBase(`/events/${event.slug}/`)}>{event.data.title}</a></h3>
+    <p>{event.data.summary}</p>
+    <ul class="pill-list">
+      {event.data.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+  </div>
+</article>
+
+<style>
+  .event-card {
+    overflow: hidden;
+  }
+
+  img {
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    object-fit: cover;
+    background: linear-gradient(135deg, rgba(21, 58, 120, 0.22), rgba(214, 163, 58, 0.18));
+  }
+
+  .content {
+    padding: 1.3rem;
+  }
+
+  .meta {
+    margin: 0 0 0.65rem;
+    color: var(--color-brand);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  h3 a {
+    color: inherit;
+  }
+
+  p:last-child {
+    color: var(--color-muted);
+  }
+</style>

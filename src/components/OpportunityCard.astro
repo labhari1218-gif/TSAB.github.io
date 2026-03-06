@@ -1,0 +1,77 @@
+---
+import { withBase } from "@/lib/site";
+import { formatDate, slugifyLabel } from "@/lib/utils";
+
+interface Props {
+  opportunity: {
+    slug: string;
+    data: {
+      title: string;
+      category: "internship" | "job" | "hackathon" | "scholarship" | "resource";
+      organization: string;
+      deadline?: string;
+      summary: string;
+      isActive: boolean;
+    };
+  };
+}
+
+const { opportunity } = Astro.props;
+---
+
+<article class="card opportunity-card">
+  <div class="head">
+    <span class="badge">{slugifyLabel(opportunity.data.category).replace("-", " ")}</span>
+    {opportunity.data.deadline && <span class="deadline">Deadline {formatDate(opportunity.data.deadline)}</span>}
+  </div>
+  <h3><a href={withBase(`/opportunities/${opportunity.slug}/`)}>{opportunity.data.title}</a></h3>
+  <p class="org">{opportunity.data.organization}</p>
+  <p>{opportunity.data.summary}</p>
+</article>
+
+<style>
+  .opportunity-card {
+    padding: 1.35rem;
+  }
+
+  .head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    align-items: center;
+  }
+
+  .badge,
+  .deadline {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .badge {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(21, 58, 120, 0.08);
+    color: var(--color-brand);
+    text-transform: capitalize;
+  }
+
+  .deadline {
+    color: var(--color-accent);
+  }
+
+  h3 {
+    margin: 1rem 0 0.4rem;
+    font-size: 1.25rem;
+  }
+
+  .org {
+    margin: 0;
+    color: var(--color-brand);
+    font-weight: 600;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+</style>

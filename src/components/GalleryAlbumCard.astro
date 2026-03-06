@@ -1,0 +1,62 @@
+---
+import { withBase } from "@/lib/site";
+import { formatDate } from "@/lib/utils";
+
+interface Props {
+  album: {
+    slug: string;
+    data: {
+      title: string;
+      eventDate: string;
+      coverImage: string;
+      summary: string;
+      images: string[];
+    };
+  };
+}
+
+const { album } = Astro.props;
+---
+
+<article class="card album-card">
+  <img src={withBase(album.data.coverImage)} alt="" />
+  <div class="content">
+    <p class="meta">{formatDate(album.data.eventDate)} · {album.data.images.length} images</p>
+    <h3><a href={withBase(`/gallery/${album.slug}/`)}>{album.data.title}</a></h3>
+    <p>{album.data.summary}</p>
+  </div>
+</article>
+
+<style>
+  .album-card {
+    overflow: hidden;
+  }
+
+  img {
+    aspect-ratio: 5 / 4;
+    width: 100%;
+    object-fit: cover;
+    background: linear-gradient(135deg, rgba(21, 58, 120, 0.22), rgba(214, 163, 58, 0.18));
+  }
+
+  .content {
+    padding: 1.3rem;
+  }
+
+  .meta {
+    margin: 0 0 0.65rem;
+    color: var(--color-brand);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+</style>

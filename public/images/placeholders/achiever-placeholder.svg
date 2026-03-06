@@ -1,0 +1,8 @@
+<svg width="960" height="720" viewBox="0 0 960 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="720" rx="56" fill="#153A78"/>
+  <rect x="56" y="56" width="848" height="608" rx="40" fill="#F7F9FE"/>
+  <circle cx="480" cy="270" r="108" fill="#D6A33A" fill-opacity="0.55"/>
+  <path d="M304 578C304 480.797 382.797 402 480 402C577.203 402 656 480.797 656 578V606H304V578Z" fill="#153A78"/>
+  <text x="480" y="118" text-anchor="middle" fill="#153A78" font-family="Sora, Arial, sans-serif" font-size="36" font-weight="700">Achiever Story Placeholder</text>
+  <text x="480" y="158" text-anchor="middle" fill="#51607A" font-family="Sora, Arial, sans-serif" font-size="20">Replace with official portrait or poster</text>
+</svg>

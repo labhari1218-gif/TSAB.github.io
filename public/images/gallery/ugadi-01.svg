@@ -1,0 +1,6 @@
+<svg width="900" height="680" viewBox="0 0 900 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="680" rx="40" fill="#153A78"/>
+  <path d="M0 520C108 464 196 436 324 436C476 436 612 484 900 680H0V520Z" fill="#D6A33A" fill-opacity="0.22"/>
+  <text x="74" y="118" fill="#FBF8F1" font-family="Sora, Arial, sans-serif" font-size="34" font-weight="700">Gallery Placeholder 01</text>
+  <text x="74" y="182" fill="#FBF8F1" font-family="Cormorant Garamond, serif" font-size="84" font-weight="700">Festival Detail</text>
+</svg>

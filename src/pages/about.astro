@@ -1,0 +1,122 @@
+---
+import CalloutPanel from "@/components/CalloutPanel.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { aboutValues } from "@/lib/site";
+---
+
+<MainLayout title="About TSAB">
+  <section class="page-section">
+    <div class="shell split-hero">
+      <div class="surface-panel reveal">
+        <div class="eyebrow">About TSAB</div>
+        <h1>Community first. Utility-driven. Built to last beyond one committee cycle.</h1>
+        <p>
+          TSAB exists to give Telugu students in Bhopal a clear home base: a place to connect, celebrate,
+          discover opportunities, and contribute to something that grows every year.
+        </p>
+      </div>
+      <div class="card timeline-card reveal stagger-1">
+        <p class="eyebrow">Why This Exists</p>
+        <ol>
+          <li>New students need an easy way to find their people.</li>
+          <li>Events need a public home beyond posters and chat forwards.</li>
+          <li>Achievements and opportunities deserve visible space.</li>
+          <li>Future teams need a site they can maintain without friction.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Mission"
+        title="A trustworthy portal for culture, support, and student momentum."
+        copy="TSAB is not framed as a static brochure. It is a living community gateway that reflects how students already participate: through events, opportunities, volunteering, media, and peer recognition."
+      />
+      <div class="listing-grid two-up about-grid">
+        <article class="card prose-panel">
+          <h2>Who can join</h2>
+          <p>
+            Any Telugu student in Bhopal who wants connection, support, cultural belonging, or a way to
+            contribute to the community.
+          </p>
+        </article>
+        <article class="card prose-panel">
+          <h2>What the site prioritizes</h2>
+          <ul>
+            {aboutValues.map((value) => <li>{value}</li>)}
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <div class="listing-grid three-up">
+        <article class="card pillar-card">
+          <h2>Belonging</h2>
+          <p>Make it easy for Telugu students to find community and feel seen early.</p>
+        </article>
+        <article class="card pillar-card">
+          <h2>Growth</h2>
+          <p>Turn TSAB into a practical utility layer through curated resources and opportunities.</p>
+        </article>
+        <article class="card pillar-card">
+          <h2>Continuity</h2>
+          <p>Preserve memories, team structure, and documentation so each batch starts stronger.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <CalloutPanel
+        eyebrow="Next Step"
+        title="Use this page as the stable public explanation of what TSAB is."
+        copy="As real history, milestones, and leadership details become available, replace the placeholder copy here without changing the component structure."
+        primaryHref="/join/"
+        primaryLabel="Join TSAB"
+        secondaryHref="/team/"
+        secondaryLabel="Meet the Team"
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  h1 {
+    margin: 0.8rem 0 0;
+    max-width: 12ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.9rem, 6vw, 5rem);
+    line-height: 0.92;
+  }
+
+  p,
+  li {
+    color: var(--color-muted);
+  }
+
+  .timeline-card,
+  .prose-panel,
+  .pillar-card {
+    padding: 1.5rem;
+  }
+
+  ol,
+  ul {
+    margin: 1rem 0 0;
+    padding-left: 1.2rem;
+  }
+
+  .pillar-card h2,
+  .prose-panel h2 {
+    margin: 0 0 0.6rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.9rem;
+  }
+</style>

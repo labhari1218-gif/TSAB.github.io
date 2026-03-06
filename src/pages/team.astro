@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import SectionIntro from "@/components/SectionIntro.astro";
+import TeamCard from "@/components/TeamCard.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+
+const members = [...(await getCollection("team"))].sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+
+const groups = [
+  { key: "core", title: "Core Team" },
+  { key: "cell-lead", title: "Cell Leads" },
+  { key: "volunteer", title: "Volunteers" },
+  { key: "alumni-mentor", title: "Alumni Mentors" }
+] as const;
+---
+
+<MainLayout title="TSAB Team">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Team"
+        title="Show the structure clearly so the community knows who is driving what."
+        copy="This placeholder team grid is grouped to make future updates simple for student editors and easier to understand for visitors."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      {groups.map((group) => {
+        const groupMembers = members.filter((member) => member.data.group === group.key);
+        return (
+          <section class="team-group">
+            <h2>{group.title}</h2>
+            <div class="listing-grid four-up">
+              {groupMembers.map((member) => <TeamCard member={member} />)}
+            </div>
+          </section>
+        );
+      })}
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .team-group + .team-group {
+    margin-top: 2.8rem;
+  }
+
+  h2 {
+    margin: 0 0 1.2rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import PrimaryButton from "@/components/PrimaryButton.astro";
+import SecondaryButton from "@/components/SecondaryButton.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+---
+
+<MainLayout title="Page Not Found | TSAB">
+  <section class="page-section">
+    <div class="shell">
+      <div class="surface-panel not-found">
+        <div class="eyebrow">404</div>
+        <h1>This page is missing, but the community path is still clear.</h1>
+        <p>
+          The link you opened does not exist in this version of the TSAB website. Use the main routes below
+          to get back to the public portal.
+        </p>
+        <div class="actions">
+          <PrimaryButton href="/" label="Back Home" />
+          <SecondaryButton href="/join/" label="Go to Join Page" />
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .not-found {
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0.9rem auto 0;
+    max-width: 12ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.92;
+  }
+
+  p {
+    max-width: 54ch;
+    margin: 1rem auto 0;
+    color: var(--color-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 1.4rem;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { getCollection, render } from "astro:content";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { withBase } from "@/lib/site";
+import { formatDate } from "@/lib/utils";
+
+export async function getStaticPaths() {
+  const albums = await getCollection("galleryAlbums");
+  return albums.map((album) => ({
+    params: { slug: album.slug },
+    props: { album }
+  }));
+}
+
+const { album } = Astro.props;
+const { Content } = await render(album);
+---
+
+<MainLayout title={`${album.data.title} | TSAB Gallery`} description={album.data.summary}>
+  <section class="page-section">
+    <div class="shell detail-shell">
+      <div class="surface-panel">
+        <div class="eyebrow">Gallery Album</div>
+        <h1>{album.data.title}</h1>
+        <p class="meta">{formatDate(album.data.eventDate)} · {album.data.year}</p>
+        <p class="summary">{album.data.summary}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell gallery-grid">
+      {album.data.images.map((image, index) => (
+        <figure class="card gallery-item">
+          <img src={withBase(image)} alt={`Placeholder gallery image ${index + 1} for ${album.data.title}`} />
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell prose">
+      <Content />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  h1 {
+    margin: 0.8rem 0 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: 0.95;
+  }
+
+  .meta {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .summary {
+    max-width: 62ch;
+    color: var(--color-muted);
+  }
+
+  .gallery-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  @media (min-width: 720px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

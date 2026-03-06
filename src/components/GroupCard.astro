@@ -1,0 +1,54 @@
+---
+import { withBase } from "@/lib/site";
+
+interface Props {
+  group: {
+    data: {
+      title: string;
+      audience: string;
+      purpose: string;
+      updatesType: string;
+      joinLabel: string;
+      joinUrl?: string;
+    };
+  };
+}
+
+const { group } = Astro.props;
+---
+
+<article class="card group-card">
+  <p class="audience">{group.data.audience}</p>
+  <h3>{group.data.title}</h3>
+  <p>{group.data.purpose}</p>
+  <p class="updates"><strong>Updates:</strong> {group.data.updatesType}</p>
+  <a class="button secondary" href={withBase(group.data.joinUrl ?? "/join/")}>{group.data.joinLabel}</a>
+</article>
+
+<style>
+  .group-card {
+    padding: 1.4rem;
+  }
+
+  .audience {
+    margin: 0 0 0.65rem;
+    color: var(--color-brand);
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h3 {
+    margin: 0 0 0.6rem;
+    font-size: 1.3rem;
+  }
+
+  p {
+    color: var(--color-muted);
+  }
+
+  .updates {
+    margin-bottom: 1.2rem;
+  }
+</style>

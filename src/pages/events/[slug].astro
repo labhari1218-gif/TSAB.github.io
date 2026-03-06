@@ -1,0 +1,100 @@
+---
+import { getCollection, render } from "astro:content";
+import CalloutPanel from "@/components/CalloutPanel.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { withBase } from "@/lib/site";
+import { formatDate } from "@/lib/utils";
+
+export async function getStaticPaths() {
+  const events = await getCollection("events");
+  return events.map((event) => ({
+    params: { slug: event.slug },
+    props: { event }
+  }));
+}
+
+const { event } = Astro.props;
+const { Content } = await render(event);
+---
+
+<MainLayout title={`${event.data.title} | TSAB Events`} description={event.data.summary}>
+  <section class="page-section">
+    <div class="shell detail-shell">
+      <img class="cover" src={withBase(event.data.coverImage)} alt="" />
+      <div class="surface-panel">
+        <div class="eyebrow">{event.data.status === "upcoming" ? "Upcoming Event" : "Past Event"}</div>
+        <h1>{event.data.title}</h1>
+        <p class="meta">
+          {formatDate(event.data.date)}
+          {event.data.endDate && ` to ${formatDate(event.data.endDate)}`} · {event.data.location}
+        </p>
+        <p class="summary">{event.data.summary}</p>
+        <ul class="pill-list">
+          {event.data.tags.map((tag) => <li>{tag}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <CalloutPanel
+        eyebrow="Participation"
+        title="Use event pages for posters, summaries, and registration links."
+        copy="Replace placeholder text with real event details, venue notes, image recaps, and registration actions as soon as the TSAB team has them."
+        primaryHref={event.data.registrationUrl ?? "/join/"}
+        primaryLabel={event.data.registrationUrl ? "Register Now" : "Join TSAB"}
+        secondaryHref="/gallery/"
+        secondaryLabel="Browse Gallery"
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .detail-shell {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .cover {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(21, 58, 120, 0.12);
+    box-shadow: var(--shadow-card);
+    background: linear-gradient(135deg, rgba(21, 58, 120, 0.24), rgba(214, 163, 58, 0.18));
+  }
+
+  h1 {
+    margin: 0.9rem 0 0;
+    max-width: 11ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 0.94;
+  }
+
+  .meta {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .summary {
+    max-width: 64ch;
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 900px) {
+    .detail-shell {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+  }
+</style>

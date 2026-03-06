@@ -1,0 +1,110 @@
+---
+import PrimaryButton from "@/components/PrimaryButton.astro";
+import SecondaryButton from "@/components/SecondaryButton.astro";
+import { siteConfig, withBase } from "@/lib/site";
+---
+
+<section class="page-section compact">
+  <div class="shell split-hero">
+    <div class="hero-copy surface-panel reveal">
+      <div class="eyebrow">Student Community Portal</div>
+      <h1>{siteConfig.headline}</h1>
+      <p>
+        Community, culture, opportunities, and growth — all in one place for Telugu students building
+        their journey in Bhopal.
+      </p>
+      <div class="actions">
+        <PrimaryButton href={siteConfig.primaryCtas.join.href} label={siteConfig.primaryCtas.join.label} />
+        <SecondaryButton href={siteConfig.primaryCtas.events.href} label={siteConfig.primaryCtas.events.label} />
+        <SecondaryButton
+          href={siteConfig.primaryCtas.opportunities.href}
+          label={siteConfig.primaryCtas.opportunities.label}
+        />
+      </div>
+    </div>
+
+    <aside class="wordmark card reveal stagger-1">
+      <p class="label">Text-first brand block</p>
+      <img src={withBase(siteConfig.logoPath)} alt="" />
+      <h2>TSAB</h2>
+      <p class="subhead">Telugu Students Association Bhopal</p>
+      <p class="description">
+        Replace this placeholder mark with the official logo anytime by updating
+        <code>src/lib/site.ts</code> and the image in <code>public/images/branding/</code>.
+      </p>
+    </aside>
+  </div>
+</section>
+
+<style>
+  h1 {
+    margin: 1rem 0 0;
+    max-width: 10ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(3.2rem, 7vw, 6.1rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .hero-copy p {
+    max-width: 58ch;
+    margin-bottom: 0;
+    color: var(--color-muted);
+    font-size: 1.06rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.4rem;
+  }
+
+  .wordmark {
+    display: grid;
+    align-content: start;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    background:
+      radial-gradient(circle at top right, rgba(214, 163, 58, 0.18), transparent 28%),
+      linear-gradient(180deg, rgba(21, 58, 120, 0.05), rgba(255, 255, 255, 0.96));
+  }
+
+  .label {
+    margin: 0;
+    color: var(--color-brand);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .wordmark img {
+    width: 4.4rem;
+    height: 4.4rem;
+  }
+
+  .wordmark h2 {
+    margin: 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2.8rem, 8vw, 4.4rem);
+    line-height: 0.9;
+    color: var(--color-brand);
+  }
+
+  .subhead {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .description {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  code {
+    font-family: inherit;
+    font-weight: 700;
+    color: var(--color-brand);
+  }
+</style>

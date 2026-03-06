@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import AchieverCard from "@/components/AchieverCard.astro";
+import EmptyState from "@/components/EmptyState.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+
+const achievers = await getCollection("achievers");
+const sortedAchievers = [...achievers].sort((a, b) => Number(Boolean(b.data.featured)) - Number(Boolean(a.data.featured)));
+---
+
+<MainLayout title="TSAB Achievers">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Achievers"
+        title="Member success should be public, visible, and easy to celebrate."
+        copy="This section gives TSAB a signature layer beyond events by highlighting student progress, wins, and recognition stories."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      {sortedAchievers.length > 0 ? (
+        <div class="listing-grid two-up">
+          {sortedAchievers.map((achiever) => <AchieverCard achiever={achiever} />)}
+        </div>
+      ) : (
+        <EmptyState
+          title="No achiever stories published"
+          copy="Create achiever Markdown entries to spotlight student success without editing the page layout."
+        />
+      )}
+    </div>
+  </section>
+</MainLayout>

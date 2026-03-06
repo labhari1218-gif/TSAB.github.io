@@ -1,0 +1,182 @@
+---
+import { getCollection } from "astro:content";
+import AchieverCard from "@/components/AchieverCard.astro";
+import CalloutPanel from "@/components/CalloutPanel.astro";
+import EventCard from "@/components/EventCard.astro";
+import FeatureCard from "@/components/FeatureCard.astro";
+import GalleryAlbumCard from "@/components/GalleryAlbumCard.astro";
+import GroupCard from "@/components/GroupCard.astro";
+import HeroSection from "@/components/HeroSection.astro";
+import OpportunityCard from "@/components/OpportunityCard.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { aboutValues, homeFeatureCards, withBase } from "@/lib/site";
+import { sortByDateDesc } from "@/lib/utils";
+
+const announcements = await getCollection("announcements");
+const pinnedAnnouncement = sortByDateDesc(announcements.filter((item) => item.data.pinned))[0];
+const upcomingEvents = sortByDateDesc(
+  (await getCollection("events")).filter((item) => item.data.status === "upcoming")
+);
+const featuredEvent = upcomingEvents.find((item) => item.data.featured) ?? upcomingEvents[0];
+const activeOpportunities = [...(await getCollection("opportunities")).filter((item) => item.data.isActive)].sort(
+  (a, b) => {
+    const aDate = new Date(a.data.deadline ?? 0).getTime();
+    const bDate = new Date(b.data.deadline ?? 0).getTime();
+    return aDate - bDate;
+  }
+);
+const featuredOpportunity = activeOpportunities.find((item) => item.data.featured) ?? activeOpportunities[0];
+const achievers = await getCollection("achievers");
+const featuredAchiever = achievers.find((item) => item.data.featured) ?? achievers[0];
+const featuredAlbums = sortByDateDesc(
+  (await getCollection("galleryAlbums")).filter((item) => item.data.featured)
+).slice(0, 2);
+const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+---
+
+<MainLayout title="TSAB | Telugu Students Association Bhopal">
+  <HeroSection />
+
+  {pinnedAnnouncement && (
+    <section class="page-section compact">
+      <div class="shell">
+        <div class="surface-panel reveal">
+          <div class="eyebrow">Pinned Update</div>
+          <h2 class="panel-title">{pinnedAnnouncement.data.title}</h2>
+          <p class="panel-copy">{pinnedAnnouncement.data.summary}</p>
+          {pinnedAnnouncement.data.ctaLabel && pinnedAnnouncement.data.ctaUrl && (
+            <a class="button secondary" href={withBase(pinnedAnnouncement.data.ctaUrl)}>{pinnedAnnouncement.data.ctaLabel}</a>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="What TSAB Offers"
+        title="A community portal shaped around real student needs."
+        copy="The site is structured to help visitors quickly understand TSAB, discover active pathways, and find updates worth acting on."
+      />
+      <div class="listing-grid four-up feature-grid">
+        {homeFeatureCards.map((card) => <FeatureCard {...card} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Spotlight"
+        title="What members can act on right now."
+        copy="The homepage always surfaces the most relevant event, opportunity, and achiever story first."
+      />
+      <div class="listing-grid three-up">
+        {featuredEvent && <EventCard event={featuredEvent} />}
+        {featuredOpportunity && <OpportunityCard opportunity={featuredOpportunity} />}
+        {featuredAchiever && <AchieverCard achiever={featuredAchiever} />}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell split-about">
+      <SectionIntro
+        eyebrow="About TSAB"
+        title="A student-led network for belonging, visibility, and growth."
+        copy="TSAB is designed to be useful first: a gateway for new students, a home for community events, and a shared platform for support and progress."
+      />
+      <div class="card values-card">
+        <ul>
+          {aboutValues.map((value) => <li>{value}</li>)}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Gallery Preview"
+        title="Memories should feel organized, not buried."
+        copy="Featured albums give the community a clean public archive without forcing every visual update onto the homepage."
+      />
+      <div class="listing-grid two-up">
+        {featuredAlbums.map((album) => <GalleryAlbumCard album={album} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Working Groups"
+        title="Four visible pathways into the TSAB ecosystem."
+        copy="Each public group card explains who it is for, what it does, and how a member can join or contribute."
+      />
+      <div class="listing-grid two-up">
+        {groups.map((group) => <GroupCard group={group} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <CalloutPanel
+        eyebrow="Join TSAB"
+        title="Launch with placeholders today. Replace them with real stories tomorrow."
+        copy="This v1 site is built so future editors can update content in GitHub, swap in official assets, and keep TSAB active without rewriting the design system."
+        primaryHref="/join/"
+        primaryLabel="Open Join & Contact"
+        secondaryHref="/about/"
+        secondaryLabel="Learn About TSAB"
+      />
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .panel-title {
+    margin: 0.85rem 0 0;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 0.96;
+  }
+
+  .panel-copy {
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+
+  .feature-grid {
+    margin-top: 2rem;
+  }
+
+  .split-about {
+    display: grid;
+    gap: 1.5rem;
+    align-items: start;
+  }
+
+  .values-card {
+    padding: 1.5rem;
+  }
+
+  .values-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: var(--color-muted);
+  }
+
+  .values-card li + li {
+    margin-top: 0.9rem;
+  }
+
+  @media (min-width: 880px) {
+    .split-about {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+</style>

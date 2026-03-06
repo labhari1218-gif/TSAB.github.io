@@ -1,0 +1,57 @@
+---
+import { withBase } from "@/lib/site";
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  copy: string;
+  primaryHref: string;
+  primaryLabel: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  copy,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel
+} = Astro.props;
+---
+
+<section class="surface-panel callout-panel">
+  <div class="eyebrow">{eyebrow}</div>
+  <h2>{title}</h2>
+  <p>{copy}</p>
+  <div class="actions">
+    <a class="button primary" href={withBase(primaryHref)}>{primaryLabel}</a>
+    {secondaryHref && secondaryLabel && (
+      <a class="button secondary" href={withBase(secondaryHref)}>{secondaryLabel}</a>
+    )}
+  </div>
+</section>
+
+<style>
+  .callout-panel h2 {
+    margin: 0.9rem 0 0;
+    max-width: 14ch;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 0.95;
+  }
+
+  .callout-panel p {
+    max-width: 56ch;
+    color: var(--color-muted);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+  }
+</style>

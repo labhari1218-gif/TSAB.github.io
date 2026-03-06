@@ -1,0 +1,11 @@
+<svg width="1280" height="800" viewBox="0 0 1280 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="800" rx="48" fill="#153A78"/>
+  <circle cx="1054" cy="180" r="150" fill="#D6A33A" fill-opacity="0.22"/>
+  <circle cx="222" cy="640" r="180" fill="#D6A33A" fill-opacity="0.12"/>
+  <path d="M122 160H456V196H122V160Z" fill="#D6A33A"/>
+  <text x="122" y="278" fill="#FBF8F1" font-family="Cormorant Garamond, serif" font-size="98" font-weight="700">Ugadi</text>
+  <text x="122" y="360" fill="#FBF8F1" font-family="Cormorant Garamond, serif" font-size="98" font-weight="700">Community Evening</text>
+  <text x="122" y="442" fill="#DCE6F7" font-family="Sora, Arial, sans-serif" font-size="28">Starter poster placeholder for the next TSAB cultural event</text>
+  <rect x="122" y="520" width="340" height="78" rx="39" fill="#FBF8F1"/>
+  <text x="292" y="568" text-anchor="middle" fill="#153A78" font-family="Sora, Arial, sans-serif" font-size="28" font-weight="700">Replace With Real Poster</text>
+</svg>

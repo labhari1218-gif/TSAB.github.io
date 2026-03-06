@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  copy: string;
+}
+
+const { title, copy } = Astro.props;
+---
+
+<div class="card empty-state">
+  <h3>{title}</h3>
+  <p>{copy}</p>
+</div>
+
+<style>
+  .empty-state {
+    padding: 1.7rem;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0 0 0.55rem;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+</style>

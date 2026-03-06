@@ -1,0 +1,40 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+}
+
+const { eyebrow, title, description } = Astro.props;
+---
+
+<article class="card feature-card reveal">
+  <p class="feature-eyebrow">{eyebrow}</p>
+  <h3>{title}</h3>
+  <p>{description}</p>
+</article>
+
+<style>
+  .feature-card {
+    padding: 1.5rem;
+    min-height: 15rem;
+  }
+
+  .feature-eyebrow {
+    margin: 0 0 0.9rem;
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+    color: var(--color-muted);
+  }
+</style>

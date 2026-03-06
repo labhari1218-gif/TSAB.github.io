@@ -1,0 +1,58 @@
+---
+import { getCollection } from "astro:content";
+import EmptyState from "@/components/EmptyState.astro";
+import EventCard from "@/components/EventCard.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { sortByDateDesc } from "@/lib/utils";
+
+const events = sortByDateDesc(await getCollection("events"));
+const upcomingEvents = events.filter((item) => item.data.status === "upcoming");
+const pastEvents = events.filter((item) => item.data.status === "past");
+---
+
+<MainLayout title="TSAB Events">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Events"
+        title="Upcoming plans first. Past memories preserved second."
+        copy="TSAB events should make the community feel active and visible, while keeping a useful record of what has already happened."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      <h2 class="group-title">Upcoming Events</h2>
+      {upcomingEvents.length > 0 ? (
+        <div class="listing-grid two-up">
+          {upcomingEvents.map((event) => <EventCard event={event} />)}
+        </div>
+      ) : (
+        <EmptyState title="No upcoming events yet" copy="Add a Markdown file in src/content/events to publish the next TSAB event." />
+      )}
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="shell">
+      <h2 class="group-title">Past Events</h2>
+      {pastEvents.length > 0 ? (
+        <div class="listing-grid two-up">
+          {pastEvents.map((event) => <EventCard event={event} />)}
+        </div>
+      ) : (
+        <EmptyState title="No archived events yet" copy="Past event recaps will appear here once they are added to the collection." />
+      )}
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .group-title {
+    margin: 0 0 1.3rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+  }
+</style>

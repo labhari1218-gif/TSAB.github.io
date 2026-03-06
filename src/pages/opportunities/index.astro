@@ -1,0 +1,67 @@
+---
+import { getCollection } from "astro:content";
+import EmptyState from "@/components/EmptyState.astro";
+import OpportunityCard from "@/components/OpportunityCard.astro";
+import SectionIntro from "@/components/SectionIntro.astro";
+import MainLayout from "@/layouts/MainLayout.astro";
+
+const opportunities = [...(await getCollection("opportunities")).filter((item) => item.data.isActive)].sort(
+  (a, b) => {
+    const aDate = new Date(a.data.deadline ?? 0).getTime();
+    const bDate = new Date(b.data.deadline ?? 0).getTime();
+    return aDate - bDate;
+  }
+);
+
+const grouped = new Map<string, typeof opportunities>();
+for (const opportunity of opportunities) {
+  const current = grouped.get(opportunity.data.category) ?? [];
+  current.push(opportunity);
+  grouped.set(opportunity.data.category, current);
+}
+---
+
+<MainLayout title="TSAB Opportunities">
+  <section class="page-section">
+    <div class="shell">
+      <SectionIntro
+        eyebrow="Opportunities"
+        title="A public utility layer for internships, jobs, hackathons, and useful calls."
+        copy="This page turns TSAB’s forum-style value into a curated, public-facing resource board instead of a chat archive."
+      />
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      {opportunities.length > 0 ? (
+        [...grouped.entries()].map(([category, items]) => (
+          <section class="category-block">
+            <h2>{category}</h2>
+            <div class="listing-grid two-up">
+              {items.map((opportunity) => <OpportunityCard opportunity={opportunity} />)}
+            </div>
+          </section>
+        ))
+      ) : (
+        <EmptyState
+          title="No active opportunities published"
+          copy="Add active entries in src/content/opportunities and they will automatically appear by category."
+        />
+      )}
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .category-block + .category-block {
+    margin-top: 2.5rem;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    text-transform: capitalize;
+  }
+</style>

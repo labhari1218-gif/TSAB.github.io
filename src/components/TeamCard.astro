@@ -1,0 +1,67 @@
+---
+import { withBase } from "@/lib/site";
+
+interface Props {
+  member: {
+    data: {
+      name: string;
+      role: string;
+      photo?: string;
+      bio: string;
+      contactLabel?: string;
+      contactUrl?: string;
+    };
+  };
+}
+
+const { member } = Astro.props;
+---
+
+<article class="card team-card">
+  <img src={withBase(member.data.photo ?? "/images/team/team-placeholder.svg")} alt="" />
+  <div class="content">
+    <h3>{member.data.name}</h3>
+    <p class="role">{member.data.role}</p>
+    <p>{member.data.bio}</p>
+    {member.data.contactLabel && member.data.contactUrl && (
+      <a class="inline-link" href={withBase(member.data.contactUrl)}>{member.data.contactLabel}</a>
+    )}
+  </div>
+</article>
+
+<style>
+  .team-card {
+    overflow: hidden;
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    background: rgba(21, 58, 120, 0.1);
+  }
+
+  .content {
+    padding: 1.2rem;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+
+  .role {
+    margin: 0.25rem 0 0.7rem;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  p:last-of-type {
+    color: var(--color-muted);
+  }
+
+  .inline-link {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+</style>

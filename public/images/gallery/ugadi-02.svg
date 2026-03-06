@@ -1,0 +1,7 @@
+<svg width="900" height="680" viewBox="0 0 900 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="680" rx="40" fill="#FBF8F1"/>
+  <rect x="40" y="40" width="820" height="600" rx="32" fill="#EEF3FB"/>
+  <circle cx="708" cy="206" r="106" fill="#153A78"/>
+  <text x="76" y="132" fill="#153A78" font-family="Sora, Arial, sans-serif" font-size="34" font-weight="700">Gallery Placeholder 02</text>
+  <text x="76" y="210" fill="#153A78" font-family="Cormorant Garamond, serif" font-size="84" font-weight="700">Crowd Moment</text>
+</svg>
