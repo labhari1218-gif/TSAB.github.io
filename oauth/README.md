@@ -11,7 +11,7 @@ This directory contains the Decap CMS GitHub OAuth proxy that should be deployed
 
 - `ORIGIN=https://labhari1218-gif.github.io`
 - `ADMIN_PANEL_URL=https://labhari1218-gif.github.io/TSAB.github.io/admin/`
-- `COMPLETE_URL=https://YOUR-VERCEL-OAUTH-DOMAIN.vercel.app/api/callback`
+- `COMPLETE_URL=https://tsab-decap-oauth.vercel.app/api/callback`
 - `OAUTH_CLIENT_ID=...`
 - `OAUTH_CLIENT_SECRET=...`
 
@@ -22,8 +22,8 @@ Create a GitHub OAuth App with:
 - Homepage URL:
   `https://labhari1218-gif.github.io/TSAB.github.io/admin/`
 - Authorization callback URL:
-  `https://YOUR-VERCEL-OAUTH-DOMAIN.vercel.app/api/callback`
+  `https://tsab-decap-oauth.vercel.app/api/callback`
 
 After deployment, replace `base_url` in `public/admin/config.yml` with:
 
-`https://YOUR-VERCEL-OAUTH-DOMAIN.vercel.app/api`
+`https://tsab-decap-oauth.vercel.app/api`
