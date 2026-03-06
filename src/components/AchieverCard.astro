@@ -10,6 +10,7 @@ interface Props {
       achievementTitle: string;
       summary: string;
       photo: string;
+      photoAlt?: string;
     };
   };
 }
@@ -18,7 +19,7 @@ const { achiever } = Astro.props;
 ---
 
 <article class="card achiever-card">
-  <img src={withBase(achiever.data.photo)} alt="" />
+  <img src={withBase(achiever.data.photo)} alt={achiever.data.photoAlt ?? `${achiever.data.name} portrait`} />
   <div class="content">
     <p class="meta">{achiever.data.institute}</p>
     <h3><a href={withBase(`/achievers/${achiever.slug}/`)}>{achiever.data.name}</a></h3>

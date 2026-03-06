@@ -1,0 +1,91 @@
+---
+import { parseVideoLinks, type VideoLink } from "@/lib/video";
+
+interface Props {
+  title?: string;
+  videos?: VideoLink[];
+}
+
+const { title = "Videos", videos = [] } = Astro.props;
+const parsedVideos = parseVideoLinks(videos);
+---
+
+{parsedVideos.length > 0 && (
+  <section class="video-section">
+    <h2>{title}</h2>
+    <div class="listing-grid two-up">
+      {parsedVideos.map((video) =>
+        video.kind === "youtube" && video.embedUrl ? (
+          <article class="card video-card">
+            <div class="embed-shell">
+              <iframe
+                src={video.embedUrl}
+                title={video.title}
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+            <div class="content">
+              <h3>{video.title}</h3>
+              <a class="button secondary" href={video.url}>Watch on YouTube</a>
+            </div>
+          </article>
+        ) : (
+          <article class="card video-card">
+            <div class="fallback-panel">
+              <p class="eyebrow">Video Link</p>
+              <h3>{video.title}</h3>
+              <p>Open the external video link to watch this recap or event clip.</p>
+              <a class="button secondary" href={video.url}>Watch Video</a>
+            </div>
+          </article>
+        )
+      )}
+    </div>
+  </section>
+)}
+
+<style>
+  .video-section {
+    margin-top: 2.5rem;
+  }
+
+  .video-section h2 {
+    margin: 0 0 1rem;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+  }
+
+  .video-card {
+    overflow: hidden;
+  }
+
+  .embed-shell {
+    aspect-ratio: 16 / 9;
+    background: #0d2553;
+  }
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .content,
+  .fallback-panel {
+    padding: 1.25rem;
+  }
+
+  .fallback-panel p:last-of-type,
+  .content h3 {
+    color: var(--color-muted);
+  }
+
+  h3 {
+    margin: 0 0 1rem;
+    color: var(--color-text);
+    font-size: 1.2rem;
+  }
+</style>

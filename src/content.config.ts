@@ -4,6 +4,87 @@ const linkSchema = z.string().refine((value) => /^(https?:|mailto:|tel:|\/)/.tes
   message: "Expected an absolute URL or site-relative path."
 });
 
+const videoLinkSchema = z.object({
+  title: z.string(),
+  url: linkSchema
+});
+
+const imageItemSchema = z.object({
+  src: z.string(),
+  alt: z.string()
+});
+
+const siteSettings = defineCollection({
+  type: "data",
+  schema: z.object({
+    name: z.string(),
+    fullName: z.string(),
+    taglineEn: z.string(),
+    taglineTe: z.string(),
+    headlineEn: z.string(),
+    headlineTe: z.string(),
+    heroSupportingText: z.string(),
+    missionStripEn: z.string(),
+    missionStripTe: z.string(),
+    description: z.string(),
+    email: z.string().email(),
+    logoPath: z.string(),
+    heroImagePath: z.string().optional(),
+    primaryCtas: z.object({
+      join: z.object({
+        label: z.string(),
+        href: linkSchema
+      }),
+      events: z.object({
+        label: z.string(),
+        href: linkSchema
+      }),
+      opportunities: z.object({
+        label: z.string(),
+        href: linkSchema
+      })
+    }),
+    socialLinks: z.array(
+      z.object({
+        label: z.string(),
+        href: linkSchema,
+        note: z.string().optional()
+      })
+    ),
+    homeThemes: z
+      .array(
+        z.object({
+          eyebrow: z.string(),
+          title: z.string(),
+          description: z.string()
+        })
+      )
+      .length(4),
+    aboutIntro: z.object({
+      eyebrow: z.string(),
+      title: z.string(),
+      accentTe: z.string(),
+      body: z.array(z.string()).min(2),
+      whoCanJoinTitle: z.string(),
+      whoCanJoinBody: z.string(),
+      familiarSpaceTitle: z.string(),
+      familiarSpaceBody: z.string()
+    }),
+    aboutMissionPoints: z.array(z.string()).min(4),
+    footerTaglineEn: z.string(),
+    footerTaglineTe: z.string(),
+    joinActions: z.array(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        label: z.string(),
+        href: linkSchema,
+        placeholder: z.boolean().optional()
+      })
+    )
+  })
+});
+
 const events = defineCollection({
   type: "content",
   schema: z.object({
@@ -13,10 +94,12 @@ const events = defineCollection({
     location: z.string(),
     summary: z.string(),
     coverImage: z.string(),
+    coverAlt: z.string().optional(),
     tags: z.array(z.string()),
     registrationUrl: linkSchema.optional(),
     status: z.enum(["upcoming", "past"]),
-    featured: z.boolean().optional()
+    featured: z.boolean().optional(),
+    videoLinks: z.array(videoLinkSchema).optional()
   })
 });
 
@@ -44,6 +127,7 @@ const achievers = defineCollection({
     achievementTitle: z.string(),
     summary: z.string(),
     photo: z.string(),
+    photoAlt: z.string().optional(),
     externalUrl: linkSchema.optional(),
     featured: z.boolean().optional()
   })
@@ -69,10 +153,12 @@ const galleryAlbums = defineCollection({
     title: z.string(),
     eventDate: z.string(),
     coverImage: z.string(),
-    images: z.array(z.string()),
+    coverAlt: z.string().optional(),
+    images: z.array(imageItemSchema),
     summary: z.string(),
     year: z.number(),
-    featured: z.boolean().optional()
+    featured: z.boolean().optional(),
+    videoLinks: z.array(videoLinkSchema).optional()
   })
 });
 
@@ -102,6 +188,7 @@ const announcements = defineCollection({
 });
 
 export const collections = {
+  siteSettings,
   events,
   opportunities,
   achievers,

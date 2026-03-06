@@ -29,6 +29,7 @@ npm run build
 
 Repeatable site content lives in `src/content/`:
 
+- `siteSettings/`
 - `events/`
 - `opportunities/`
 - `achievers/`
@@ -38,6 +39,15 @@ Repeatable site content lives in `src/content/`:
 - `announcements/`
 
 Static images live in `public/images/`.
+
+## CMS
+
+Decap CMS admin files are in:
+
+- `public/admin/`
+- `oauth/`
+
+The public site stays on GitHub Pages. The Decap OAuth proxy must be deployed separately on Vercel.
 
 ## Editing without code changes
 
@@ -49,6 +59,11 @@ Use GitHub’s browser editor for most updates.
 4. Commit the change in the browser.
 
 Detailed instructions are in [docs/content-editing.md](/home/hari-krishna/Desktop/TSAB/docs/content-editing.md).
+
+Additional setup docs:
+
+- [docs/decap-cms.md](/home/hari-krishna/Desktop/TSAB/docs/decap-cms.md)
+- [docs/image-checklist.md](/home/hari-krishna/Desktop/TSAB/docs/image-checklist.md)
 
 ## Deployment
 

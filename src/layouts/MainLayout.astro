@@ -1,7 +1,8 @@
 ---
 import SiteFooter from "@/components/SiteFooter.astro";
 import SiteHeader from "@/components/SiteHeader.astro";
-import { siteConfig } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { withBase } from "@/lib/site";
 import "@/styles/global.css";
 
 interface Props {
@@ -9,7 +10,8 @@ interface Props {
   description?: string;
 }
 
-const { title, description = siteConfig.description } = Astro.props;
+const settings = await getSiteSettings();
+const { title, description = settings.description } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
@@ -20,7 +22,7 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href={new URL(siteConfig.logoPath, Astro.site)} />
+    <link rel="icon" type="image/png" href={new URL(withBase(settings.logoPath), Astro.site)} />
   </head>
   <body>
     <a class="sr-only" href="#main-content">Skip to content</a>

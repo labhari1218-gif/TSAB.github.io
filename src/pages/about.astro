@@ -2,27 +2,24 @@
 import CalloutPanel from "@/components/CalloutPanel.astro";
 import SectionIntro from "@/components/SectionIntro.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import { aboutValues } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+
+const settings = await getSiteSettings();
 ---
 
 <MainLayout title="About TSAB">
   <section class="page-section">
     <div class="shell split-hero">
       <div class="surface-panel reveal">
-        <div class="eyebrow">About TSAB</div>
-        <h1>Community first. Utility-driven. Built to last beyond one committee cycle.</h1>
-        <p>
-          TSAB exists to give Telugu students in Bhopal a clear home base: a place to connect, celebrate,
-          discover opportunities, and contribute to something that grows every year.
-        </p>
+        <div class="eyebrow">{settings.aboutIntro.eyebrow}</div>
+        <h1>{settings.aboutIntro.title}</h1>
+        <p class="accent-te">{settings.aboutIntro.accentTe}</p>
+        {settings.aboutIntro.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
       <div class="card timeline-card reveal stagger-1">
-        <p class="eyebrow">Why This Exists</p>
+        <p class="eyebrow">Mission</p>
         <ol>
-          <li>New students need an easy way to find their people.</li>
-          <li>Events need a public home beyond posters and chat forwards.</li>
-          <li>Achievements and opportunities deserve visible space.</li>
-          <li>Future teams need a site they can maintain without friction.</li>
+          {settings.aboutMissionPoints.map((point) => <li>{point}</li>)}
         </ol>
       </div>
     </div>
@@ -32,22 +29,17 @@ import { aboutValues } from "@/lib/site";
     <div class="shell">
       <SectionIntro
         eyebrow="Mission"
-        title="A trustworthy portal for culture, support, and student momentum."
-        copy="TSAB is not framed as a static brochure. It is a living community gateway that reflects how students already participate: through events, opportunities, volunteering, media, and peer recognition."
+        title="A trustworthy space for culture, support, opportunities, and shared student momentum."
+        copy="TSAB is not only about events. It is a community platform that helps Telugu students in Bhopal stay connected, supported, represented, and encouraged to grow."
       />
       <div class="listing-grid two-up about-grid">
         <article class="card prose-panel">
-          <h2>Who can join</h2>
-          <p>
-            Any Telugu student in Bhopal who wants connection, support, cultural belonging, or a way to
-            contribute to the community.
-          </p>
+          <h2>{settings.aboutIntro.whoCanJoinTitle}</h2>
+          <p>{settings.aboutIntro.whoCanJoinBody}</p>
         </article>
         <article class="card prose-panel">
-          <h2>What the site prioritizes</h2>
-          <ul>
-            {aboutValues.map((value) => <li>{value}</li>)}
-          </ul>
+          <h2>{settings.aboutIntro.familiarSpaceTitle}</h2>
+          <p>{settings.aboutIntro.familiarSpaceBody}</p>
         </article>
       </div>
     </div>
@@ -58,15 +50,15 @@ import { aboutValues } from "@/lib/site";
       <div class="listing-grid three-up">
         <article class="card pillar-card">
           <h2>Belonging</h2>
-          <p>Make it easy for Telugu students to find community and feel seen early.</p>
+          <p>Help students feel at home quickly by connecting them to people, updates, and a familiar cultural space.</p>
         </article>
         <article class="card pillar-card">
           <h2>Growth</h2>
-          <p>Turn TSAB into a practical utility layer through curated resources and opportunities.</p>
+          <p>Share opportunities, useful student resources, and achiever stories that encourage academic and professional growth.</p>
         </article>
         <article class="card pillar-card">
-          <h2>Continuity</h2>
-          <p>Preserve memories, team structure, and documentation so each batch starts stronger.</p>
+          <h2>Culture</h2>
+          <p>Celebrate Telugu festivals, language, identity, and heritage in a way that feels warm, modern, and visible.</p>
         </article>
       </div>
     </div>
@@ -76,8 +68,8 @@ import { aboutValues } from "@/lib/site";
     <div class="shell">
       <CalloutPanel
         eyebrow="Next Step"
-        title="Use this page as the stable public explanation of what TSAB is."
-        copy="As real history, milestones, and leadership details become available, replace the placeholder copy here without changing the component structure."
+        title="TSAB should feel like a familiar space away from home."
+        copy="Use this page to clearly explain who TSAB is, why it exists, and how Telugu students in Bhopal can become part of a stronger support system."
         primaryHref="/join/"
         primaryLabel="Join TSAB"
         secondaryHref="/team/"
@@ -99,6 +91,12 @@ import { aboutValues } from "@/lib/site";
   p,
   li {
     color: var(--color-muted);
+  }
+
+  .accent-te {
+    margin: 0.35rem 0 1rem;
+    color: var(--color-brand);
+    font-weight: 700;
   }
 
   .timeline-card,

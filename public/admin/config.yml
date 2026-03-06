@@ -1,0 +1,254 @@
+backend:
+  name: github
+  repo: labhari1218-gif/TSAB.github.io
+  branch: main
+  base_url: https://YOUR-VERCEL-OAUTH-DOMAIN.vercel.app/api
+  auth_endpoint: auth
+  use_graphql: true
+
+local_backend: true
+publish_mode: simple
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+site_url: https://labhari1218-gif.github.io/TSAB.github.io/
+display_url: https://labhari1218-gif.github.io/TSAB.github.io/
+
+collections:
+  - label: Site Settings
+    name: site_settings
+    files:
+      - label: Site Settings
+        name: site
+        file: src/content/siteSettings/site.json
+        fields:
+          - { label: Short Name, name: name, widget: string }
+          - { label: Full Name, name: fullName, widget: string }
+          - { label: Tagline (English), name: taglineEn, widget: text }
+          - { label: Tagline (Telugu), name: taglineTe, widget: string }
+          - { label: Headline (English), name: headlineEn, widget: string }
+          - { label: Headline (Telugu), name: headlineTe, widget: string }
+          - { label: Hero Supporting Text, name: heroSupportingText, widget: text }
+          - { label: Mission Strip (English), name: missionStripEn, widget: string }
+          - { label: Mission Strip (Telugu), name: missionStripTe, widget: string }
+          - { label: SEO Description, name: description, widget: text }
+          - { label: Public Email, name: email, widget: string }
+          - { label: Logo Path, name: logoPath, widget: string }
+          - { label: Hero Image Path, name: heroImagePath, widget: string, required: false }
+          - label: Primary CTAs
+            name: primaryCtas
+            widget: object
+            fields:
+              - label: Join CTA
+                name: join
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Href, name: href, widget: string }
+              - label: Events CTA
+                name: events
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Href, name: href, widget: string }
+              - label: Opportunities CTA
+                name: opportunities
+                widget: object
+                fields:
+                  - { label: Label, name: label, widget: string }
+                  - { label: Href, name: href, widget: string }
+          - label: Social Links
+            name: socialLinks
+            widget: list
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Href, name: href, widget: string }
+              - { label: Note, name: note, widget: text, required: false }
+          - label: Homepage Themes
+            name: homeThemes
+            widget: list
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+          - label: About Intro
+            name: aboutIntro
+            widget: object
+            fields:
+              - { label: Eyebrow, name: eyebrow, widget: string }
+              - { label: Title, name: title, widget: text }
+              - { label: Telugu Accent, name: accentTe, widget: string }
+              - label: Body Paragraphs
+                name: body
+                widget: list
+                field: { label: Paragraph, name: paragraph, widget: text }
+              - { label: Who Can Join Title, name: whoCanJoinTitle, widget: string }
+              - { label: Who Can Join Body, name: whoCanJoinBody, widget: text }
+              - { label: Why It Matters Title, name: familiarSpaceTitle, widget: string }
+              - { label: Why It Matters Body, name: familiarSpaceBody, widget: text }
+          - label: About Mission Points
+            name: aboutMissionPoints
+            widget: list
+            field: { label: Point, name: point, widget: string }
+          - { label: Footer Tagline (English), name: footerTaglineEn, widget: string }
+          - { label: Footer Tagline (Telugu), name: footerTaglineTe, widget: string }
+          - label: Join Actions
+            name: joinActions
+            widget: list
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: description, widget: text }
+              - { label: Button Label, name: label, widget: string }
+              - { label: Href, name: href, widget: string }
+              - { label: Placeholder Link, name: placeholder, widget: boolean, required: false }
+
+  - label: Announcements
+    name: announcements
+    folder: src/content/announcements
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: CTA Label, name: ctaLabel, widget: string, required: false }
+      - { label: CTA URL, name: ctaUrl, widget: string, required: false }
+      - { label: Pinned, name: pinned, widget: boolean, required: false }
+      - { label: Body, name: body, widget: markdown, required: false }
+
+  - label: Events
+    name: events
+    folder: src/content/events
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: End Date, name: endDate, widget: datetime, date_format: YYYY-MM-DD, time_format: false, required: false }
+      - { label: Location, name: location, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Cover Image, name: coverImage, widget: image }
+      - { label: Cover Alt, name: coverAlt, widget: string, required: false }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Registration URL, name: registrationUrl, widget: string, required: false }
+      - { label: Status, name: status, widget: select, options: [upcoming, past] }
+      - { label: Featured, name: featured, widget: boolean, required: false }
+      - label: Video Links
+        name: videoLinks
+        widget: list
+        required: false
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: URL, name: url, widget: string }
+      - { label: Body, name: body, widget: markdown }
+
+  - label: Opportunities
+    name: opportunities
+    folder: src/content/opportunities
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Category, name: category, widget: select, options: [internship, job, hackathon, scholarship, resource] }
+      - { label: Organization, name: organization, widget: string }
+      - { label: Deadline, name: deadline, widget: datetime, date_format: YYYY-MM-DD, time_format: false, required: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Source URL, name: sourceUrl, widget: string }
+      - { label: Featured, name: featured, widget: boolean, required: false }
+      - { label: Is Active, name: isActive, widget: boolean }
+      - { label: Body, name: body, widget: markdown }
+
+  - label: Achievers
+    name: achievers
+    folder: src/content/achievers
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Institute, name: institute, widget: string }
+      - { label: Program, name: program, widget: string, required: false }
+      - { label: Batch, name: batch, widget: string, required: false }
+      - { label: Achievement Title, name: achievementTitle, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Photo, name: photo, widget: image }
+      - { label: Photo Alt, name: photoAlt, widget: string, required: false }
+      - { label: External URL, name: externalUrl, widget: string, required: false }
+      - { label: Featured, name: featured, widget: boolean, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - label: Team
+    name: team
+    folder: src/content/team
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Name, name: name, widget: string }
+      - { label: Role, name: role, widget: string }
+      - { label: Group, name: group, widget: select, options: [core, cell-lead, volunteer, alumni-mentor] }
+      - { label: Photo, name: photo, widget: image, required: false }
+      - { label: Bio, name: bio, widget: text }
+      - { label: Sort Order, name: sortOrder, widget: number }
+      - { label: Contact Label, name: contactLabel, widget: string, required: false }
+      - { label: Contact URL, name: contactUrl, widget: string, required: false }
+      - { label: Body, name: body, widget: markdown, required: false }
+
+  - label: Gallery Albums
+    name: gallery_albums
+    folder: src/content/galleryAlbums
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Event Date, name: eventDate, widget: datetime, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Cover Image, name: coverImage, widget: image }
+      - { label: Cover Alt, name: coverAlt, widget: string, required: false }
+      - label: Images
+        name: images
+        widget: list
+        fields:
+          - { label: Source, name: src, widget: image }
+          - { label: Alt, name: alt, widget: string }
+      - label: Video Links
+        name: videoLinks
+        widget: list
+        required: false
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: URL, name: url, widget: string }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Year, name: year, widget: number }
+      - { label: Featured, name: featured, widget: boolean, required: false }
+      - { label: Body, name: body, widget: markdown, required: false }
+
+  - label: Working Groups
+    name: groups
+    folder: src/content/groups
+    create: true
+    slug: "{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Audience, name: audience, widget: string }
+      - { label: Purpose, name: purpose, widget: text }
+      - { label: Updates Type, name: updatesType, widget: text }
+      - { label: Join Label, name: joinLabel, widget: string }
+      - { label: Join URL, name: joinUrl, widget: string, required: false }
+      - { label: Sort Order, name: sortOrder, widget: number }
+      - { label: Body, name: body, widget: markdown, required: false }

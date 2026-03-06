@@ -10,9 +10,11 @@ import HeroSection from "@/components/HeroSection.astro";
 import OpportunityCard from "@/components/OpportunityCard.astro";
 import SectionIntro from "@/components/SectionIntro.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import { aboutValues, homeFeatureCards, withBase } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { withBase } from "@/lib/site";
 import { sortByDateDesc } from "@/lib/utils";
 
+const settings = await getSiteSettings();
 const announcements = await getCollection("announcements");
 const pinnedAnnouncement = sortByDateDesc(announcements.filter((item) => item.data.pinned))[0];
 const upcomingEvents = sortByDateDesc(
@@ -57,11 +59,11 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell">
       <SectionIntro
         eyebrow="What TSAB Offers"
-        title="A community portal shaped around real student needs."
-        copy="The site is structured to help visitors quickly understand TSAB, discover active pathways, and find updates worth acting on."
+        title="A warm, simple space built around what Telugu students actually need."
+        copy="TSAB is here to help students feel connected, stay informed, celebrate culture, and grow together through a stronger student network."
       />
       <div class="listing-grid four-up feature-grid">
-        {homeFeatureCards.map((card) => <FeatureCard {...card} />)}
+        {settings.homeThemes.map((card) => <FeatureCard {...card} />)}
       </div>
     </div>
   </section>
@@ -70,8 +72,8 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell">
       <SectionIntro
         eyebrow="Spotlight"
-        title="What members can act on right now."
-        copy="The homepage always surfaces the most relevant event, opportunity, and achiever story first."
+        title="What the community can join, explore, and celebrate right now."
+        copy="TSAB highlights the next thing to attend, the next opportunity worth opening, and the student stories that deserve visibility."
       />
       <div class="listing-grid three-up">
         {featuredEvent && <EventCard event={featuredEvent} />}
@@ -85,12 +87,13 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell split-about">
       <SectionIntro
         eyebrow="About TSAB"
-        title="A student-led network for belonging, visibility, and growth."
-        copy="TSAB is designed to be useful first: a gateway for new students, a home for community events, and a shared platform for support and progress."
+        title={settings.aboutIntro.title}
+        copy={settings.aboutIntro.body[0]}
       />
       <div class="card values-card">
+        <p class="about-accent">{settings.aboutIntro.accentTe}</p>
         <ul>
-          {aboutValues.map((value) => <li>{value}</li>)}
+          {settings.aboutMissionPoints.map((value) => <li>{value}</li>)}
         </ul>
       </div>
     </div>
@@ -100,8 +103,8 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell">
       <SectionIntro
         eyebrow="Gallery Preview"
-        title="Memories should feel organized, not buried."
-        copy="Featured albums give the community a clean public archive without forcing every visual update onto the homepage."
+        title="Memories deserve a clean archive, not a cluttered feed."
+        copy="Albums help TSAB preserve festivals, gatherings, service moments, and community milestones in a way that stays easy to browse later."
       />
       <div class="listing-grid two-up">
         {featuredAlbums.map((album) => <GalleryAlbumCard album={album} />)}
@@ -113,8 +116,8 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell">
       <SectionIntro
         eyebrow="Working Groups"
-        title="Four visible pathways into the TSAB ecosystem."
-        copy="Each public group card explains who it is for, what it does, and how a member can join or contribute."
+        title="Four clear pathways into the TSAB community."
+        copy="The public site should show how TSAB works: one space for belonging, one for opportunities, one for volunteers, and one for media memories."
       />
       <div class="listing-grid two-up">
         {groups.map((group) => <GroupCard group={group} />)}
@@ -126,8 +129,8 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     <div class="shell">
       <CalloutPanel
         eyebrow="Join TSAB"
-        title="Launch with placeholders today. Replace them with real stories tomorrow."
-        copy="This v1 site is built so future editors can update content in GitHub, swap in official assets, and keep TSAB active without rewriting the design system."
+        title="Belonging should feel simple, human, and easy to begin."
+        copy="Join TSAB to find people, celebrate Telugu culture, share opportunities, and become part of a student support system away from home."
         primaryHref="/join/"
         primaryLabel="Open Join & Contact"
         secondaryHref="/about/"
@@ -162,6 +165,12 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
 
   .values-card {
     padding: 1.5rem;
+  }
+
+  .about-accent {
+    margin: 0 0 0.8rem;
+    color: var(--color-brand);
+    font-weight: 700;
   }
 
   .values-card ul {

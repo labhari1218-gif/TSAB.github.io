@@ -1,37 +1,40 @@
 ---
 import PrimaryButton from "@/components/PrimaryButton.astro";
 import SecondaryButton from "@/components/SecondaryButton.astro";
-import { siteConfig, withBase } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { withBase } from "@/lib/site";
+
+const settings = await getSiteSettings();
 ---
 
 <section class="page-section compact">
   <div class="shell split-hero">
     <div class="hero-copy surface-panel reveal">
-      <div class="eyebrow">Student Community Portal</div>
-      <h1>{siteConfig.headline}</h1>
-      <p>
-        Community, culture, opportunities, and growth — all in one place for Telugu students building
-        their journey in Bhopal.
-      </p>
+      <div class="eyebrow">Telugu Student Community</div>
+      <h1>{settings.headlineEn}</h1>
+      <p class="headline-te">{settings.headlineTe}</p>
+      <p>{settings.heroSupportingText}</p>
+      <div class="mission-strip">
+        <span>{settings.missionStripEn}</span>
+        <strong>{settings.missionStripTe}</strong>
+      </div>
       <div class="actions">
-        <PrimaryButton href={siteConfig.primaryCtas.join.href} label={siteConfig.primaryCtas.join.label} />
-        <SecondaryButton href={siteConfig.primaryCtas.events.href} label={siteConfig.primaryCtas.events.label} />
+        <PrimaryButton href={settings.primaryCtas.join.href} label={settings.primaryCtas.join.label} />
+        <SecondaryButton href={settings.primaryCtas.events.href} label={settings.primaryCtas.events.label} />
         <SecondaryButton
-          href={siteConfig.primaryCtas.opportunities.href}
-          label={siteConfig.primaryCtas.opportunities.label}
+          href={settings.primaryCtas.opportunities.href}
+          label={settings.primaryCtas.opportunities.label}
         />
       </div>
     </div>
 
     <aside class="wordmark card reveal stagger-1">
-      <p class="label">Text-first brand block</p>
-      <img src={withBase(siteConfig.logoPath)} alt="" />
-      <h2>TSAB</h2>
-      <p class="subhead">Telugu Students Association Bhopal</p>
-      <p class="description">
-        Replace this placeholder mark with the official logo anytime by updating
-        <code>src/lib/site.ts</code> and the image in <code>public/images/branding/</code>.
-      </p>
+      <p class="label">Together we belong</p>
+      <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} />
+      <h2>{settings.name}</h2>
+      <p class="subhead">{settings.fullName}</p>
+      <p class="brand-te">{settings.headlineTe}</p>
+      <p class="description">{settings.taglineEn}</p>
     </aside>
   </div>
 </section>
@@ -51,6 +54,34 @@ import { siteConfig, withBase } from "@/lib/site";
     margin-bottom: 0;
     color: var(--color-muted);
     font-size: 1.06rem;
+  }
+
+  .headline-te {
+    margin-top: 0.45rem;
+    color: var(--color-brand);
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .mission-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.1rem;
+    align-items: center;
+    margin-top: 1.3rem;
+    padding: 0.9rem 1rem;
+    border-radius: 1.25rem;
+    background: rgba(21, 58, 120, 0.08);
+  }
+
+  .mission-strip span {
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
+  .mission-strip strong {
+    color: var(--color-accent);
+    font-size: 1.02rem;
   }
 
   .actions {
@@ -80,8 +111,11 @@ import { siteConfig, withBase } from "@/lib/site";
   }
 
   .wordmark img {
-    width: 4.4rem;
-    height: 4.4rem;
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 1.1rem;
+    box-shadow: 0 12px 28px rgba(13, 37, 83, 0.16);
   }
 
   .wordmark h2 {
@@ -97,14 +131,14 @@ import { siteConfig, withBase } from "@/lib/site";
     font-weight: 700;
   }
 
+  .brand-te {
+    margin: 0;
+    color: var(--color-brand);
+    font-weight: 700;
+  }
+
   .description {
     margin: 0;
     color: var(--color-muted);
-  }
-
-  code {
-    font-family: inherit;
-    font-weight: 700;
-    color: var(--color-brand);
   }
 </style>

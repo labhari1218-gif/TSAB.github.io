@@ -1,5 +1,6 @@
 ---
-import { navLinks, siteConfig, withBase, withoutBase } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { navLinks, withBase, withoutBase } from "@/lib/site";
 
 interface Props {
   currentPath: string;
@@ -7,15 +8,16 @@ interface Props {
 
 const { currentPath } = Astro.props;
 const normalizedPath = withoutBase(currentPath);
+const settings = await getSiteSettings();
 ---
 
 <header class="site-header">
   <div class="shell nav-shell">
     <a class="brand" href={withBase("/")}>
-      <img src={withBase(siteConfig.logoPath)} alt="" />
+      <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} />
       <div>
-        <strong>{siteConfig.name}</strong>
-        <span>{siteConfig.fullName}</span>
+        <strong>{settings.name}</strong>
+        <span>{settings.headlineTe}</span>
       </div>
     </a>
 
@@ -78,6 +80,8 @@ const normalizedPath = withoutBase(currentPath);
   .brand img {
     width: 3rem;
     height: 3rem;
+    border-radius: 0.75rem;
+    object-fit: cover;
   }
 
   .brand strong,

@@ -1,13 +1,17 @@
 ---
-import { navLinks, siteConfig, withBase } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { navLinks, withBase } from "@/lib/site";
+
+const settings = await getSiteSettings();
 ---
 
 <footer class="site-footer">
   <div class="shell footer-grid">
     <section>
       <p class="eyebrow">TSAB</p>
-      <h2>{siteConfig.fullName}</h2>
-      <p>{siteConfig.tagline}</p>
+      <h2>{settings.fullName}</h2>
+      <p>{settings.footerTaglineEn}</p>
+      <p class="telugu-line">{settings.footerTaglineTe}</p>
     </section>
 
     <section>
@@ -22,14 +26,17 @@ import { navLinks, siteConfig, withBase } from "@/lib/site";
     <section>
       <h3>Contact</h3>
       <p>
-        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        <a href={`mailto:${settings.email}`}>{settings.email}</a>
       </p>
       <ul>
-        {siteConfig.socialLinks.map((link) => (
-          <li><a href={withBase(link.href)}>{link.label}</a></li>
+        {settings.socialLinks.map((link) => (
+          <li>
+            <a href={withBase(link.href)}>{link.label}</a>
+            {link.note && <span class="link-note">{link.note}</span>}
+          </li>
         ))}
       </ul>
-      <p class="note">Update these placeholder links in <code>src/lib/site.ts</code>.</p>
+      <p class="note">Update public links and brand text from Decap CMS site settings or `src/content/siteSettings/site.json`.</p>
     </section>
   </div>
 </footer>
@@ -77,9 +84,17 @@ import { navLinks, siteConfig, withBase } from "@/lib/site";
     font-size: 0.9rem;
   }
 
-  code {
-    font-family: inherit;
-    color: white;
+  .telugu-line {
+    margin-top: 0.4rem;
+    color: rgba(255, 255, 255, 0.92);
+    font-weight: 600;
+  }
+
+  .link-note {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.58);
   }
 
   @media (min-width: 900px) {

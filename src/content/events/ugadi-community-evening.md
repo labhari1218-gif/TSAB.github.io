@@ -6,6 +6,7 @@ endDate: "2026-04-12"
 location: "Bhopal Campus Auditorium"
 summary: "Placeholder launch content for a TSAB cultural evening with performances, welcome activities, and shared community time."
 coverImage: "/images/placeholders/poster-ugadi.svg"
+coverAlt: "Starter Ugadi community evening poster for TSAB"
 tags:
   - "Culture"
   - "Welcome"

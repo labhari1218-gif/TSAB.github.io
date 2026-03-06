@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import VideoSection from "@/components/VideoSection.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { withBase } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
@@ -30,11 +31,17 @@ const { Content } = await render(album);
 
   <section class="page-section compact">
     <div class="shell gallery-grid">
-      {album.data.images.map((image, index) => (
+      {album.data.images.map((image) => (
         <figure class="card gallery-item">
-          <img src={withBase(image)} alt={`Placeholder gallery image ${index + 1} for ${album.data.title}`} />
+          <img src={withBase(image.src)} alt={image.alt} />
         </figure>
       ))}
+    </div>
+  </section>
+
+  <section class="page-section compact">
+    <div class="shell">
+      <VideoSection title="Gallery Videos" videos={album.data.videoLinks} />
     </div>
   </section>
 

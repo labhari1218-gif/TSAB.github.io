@@ -1,113 +1,106 @@
 # TSAB Content Editing Guide
 
-This site is structured so TSAB members can update most content through GitHub without editing Astro components.
+This site is structured so TSAB members can update content either through GitHub or through Decap CMS once the admin login is configured.
 
-## What to edit
+## Editable content locations
 
-Use these folders for content updates:
-
+- `src/content/siteSettings/site.json`
+- `src/content/announcements/`
 - `src/content/events/`
 - `src/content/opportunities/`
 - `src/content/achievers/`
 - `src/content/team/`
 - `src/content/galleryAlbums/`
 - `src/content/groups/`
-- `src/content/announcements/`
 
-Use `public/images/` for uploaded images and placeholders.
+Images should be uploaded under:
 
-## How to add an event
+- `public/images/branding/`
+- `public/images/uploads/`
+- `public/images/gallery/`
+- `public/images/team/`
 
-1. Open `src/content/events/`.
-2. Duplicate an existing event file or create a new Markdown file.
-3. Keep the frontmatter fields consistent.
-4. Update:
-   - `title`
-   - `slug`
-   - `date`
-   - `location`
-   - `summary`
-   - `coverImage`
-   - `tags`
-   - `status`
-5. Add the event description below the frontmatter.
+## Site-wide settings
 
-## How to add an opportunity
+Edit `src/content/siteSettings/site.json` to update:
 
-1. Open `src/content/opportunities/`.
-2. Create a new Markdown file.
-3. Set:
-   - `category`
-   - `organization`
-   - `deadline`
-   - `summary`
-   - `sourceUrl`
-   - `isActive`
-4. Keep website copy short and point users to the source link for full details.
+- hero headline
+- Telugu brand line
+- mission strip
+- footer tagline
+- email
+- social links
+- join actions
 
-## How to add an achiever story
+This file is intended to be managed through Decap once `/admin/` is fully configured.
 
-1. Open `src/content/achievers/`.
-2. Create a new Markdown file.
-3. Add the member’s:
-   - name
-   - institute
-   - achievement title
-   - summary
-   - photo path
-4. Use the Markdown body for the longer story.
+## Events
 
-## How to update the team page
+Event entries support:
 
-1. Open `src/content/team/`.
-2. Edit existing member files or add new ones.
-3. Set the correct `group` value:
-   - `core`
-   - `cell-lead`
-   - `volunteer`
-   - `alumni-mentor`
-4. Use `sortOrder` to control the display order.
+- title
+- date and optional end date
+- location
+- summary
+- cover image
+- cover alt text
+- tags
+- registration URL
+- status
+- optional video links
 
-## How to add a gallery album
+Use `videoLinks` only for public videos.
 
-1. Upload images to `public/images/gallery/`.
-2. Open `src/content/galleryAlbums/`.
-3. Create or edit the album Markdown file.
-4. Update:
-   - `title`
-   - `eventDate`
-   - `coverImage`
-   - `images`
-   - `summary`
-   - `year`
+## Opportunities
 
-## Image naming guidance
+Use opportunities for:
 
-Use predictable lowercase file names:
+- internships
+- jobs
+- hackathons
+- scholarships
+- useful resources
 
-- `event-name-cover.jpg`
-- `event-name-01.jpg`
-- `event-name-02.jpg`
-- `team-member-name.jpg`
-- `achiever-name.jpg`
+Keep the website summary short and link to the original source for full instructions.
 
-Avoid spaces in image file names.
+## Achievers
 
-## Where to replace placeholders
+Each achiever entry should include:
 
-Replace these first:
+- name
+- institute
+- achievement title
+- summary
+- photo
+- optional photo alt text
+- optional external source
 
-- `src/lib/site.ts`
-  - email
-  - social links
-  - logo path
-- `public/images/branding/logo-placeholder.svg`
-- `public/images/placeholders/`
-- placeholder team and achiever entries in `src/content/`
+## Team
+
+Use the `group` field to place members in:
+
+- `core`
+- `cell-lead`
+- `volunteer`
+- `alumni-mentor`
+
+Use `sortOrder` to control the visible order.
+
+## Gallery albums
+
+Gallery albums now use image objects, not plain image strings.
+
+Each image needs:
+
+- `src`
+- `alt`
+
+Albums can also include `videoLinks`.
 
 ## Safe publishing rules
 
-- Do not publish private WhatsApp exports.
+- Do not publish WhatsApp screenshots or raw chat exports.
 - Do not publish personal phone numbers without consent.
-- Keep source links authoritative for forms, jobs, scholarships, or registrations.
-- Use real photos only when TSAB has permission to publish them.
+- Use real public forms and links only when they are ready.
+- Keep all public copy simple and student-friendly.
+- Use Telugu only in identity-led areas, not every paragraph.

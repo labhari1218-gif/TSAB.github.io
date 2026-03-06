@@ -9,8 +9,9 @@ interface Props {
       title: string;
       eventDate: string;
       coverImage: string;
+      coverAlt?: string;
       summary: string;
-      images: string[];
+      images: Array<{ src: string; alt: string }>;
     };
   };
 }
@@ -19,7 +20,7 @@ const { album } = Astro.props;
 ---
 
 <article class="card album-card">
-  <img src={withBase(album.data.coverImage)} alt="" />
+  <img src={withBase(album.data.coverImage)} alt={album.data.coverAlt ?? `${album.data.title} album cover`} />
   <div class="content">
     <p class="meta">{formatDate(album.data.eventDate)} · {album.data.images.length} images</p>
     <h3><a href={withBase(`/gallery/${album.slug}/`)}>{album.data.title}</a></h3>

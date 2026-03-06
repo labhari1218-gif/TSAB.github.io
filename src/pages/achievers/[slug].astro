@@ -19,7 +19,11 @@ const { Content } = await render(achiever);
 <MainLayout title={`${achiever.data.name} | TSAB Achievers`} description={achiever.data.summary}>
   <section class="page-section">
     <div class="shell detail-shell">
-      <img class="portrait" src={withBase(achiever.data.photo)} alt="" />
+      <img
+        class="portrait"
+        src={withBase(achiever.data.photo)}
+        alt={achiever.data.photoAlt ?? `${achiever.data.name} portrait`}
+      />
       <div class="surface-panel">
         <div class="eyebrow">Featured Story</div>
         <h1>{achiever.data.name}</h1>

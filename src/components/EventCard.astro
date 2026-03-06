@@ -11,6 +11,7 @@ interface Props {
       location: string;
       summary: string;
       coverImage: string;
+      coverAlt?: string;
       tags: string[];
       status: "upcoming" | "past";
     };
@@ -21,7 +22,7 @@ const { event } = Astro.props;
 ---
 
 <article class="card event-card">
-  <img src={withBase(event.data.coverImage)} alt="" />
+  <img src={withBase(event.data.coverImage)} alt={event.data.coverAlt ?? `${event.data.title} cover image`} />
   <div class="content">
     <p class="meta">{formatDate(event.data.date)} · {event.data.location}</p>
     <h3><a href={withBase(`/events/${event.slug}/`)}>{event.data.title}</a></h3>

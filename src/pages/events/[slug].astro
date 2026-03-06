@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import CalloutPanel from "@/components/CalloutPanel.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
+import VideoSection from "@/components/VideoSection.astro";
 import { withBase } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
@@ -20,7 +21,11 @@ const { Content } = await render(event);
 <MainLayout title={`${event.data.title} | TSAB Events`} description={event.data.summary}>
   <section class="page-section">
     <div class="shell detail-shell">
-      <img class="cover" src={withBase(event.data.coverImage)} alt="" />
+      <img
+        class="cover"
+        src={withBase(event.data.coverImage)}
+        alt={event.data.coverAlt ?? `${event.data.title} cover image`}
+      />
       <div class="surface-panel">
         <div class="eyebrow">{event.data.status === "upcoming" ? "Upcoming Event" : "Past Event"}</div>
         <h1>{event.data.title}</h1>
@@ -42,12 +47,18 @@ const { Content } = await render(event);
     </div>
   </section>
 
+  <section class="page-section compact">
+    <div class="shell">
+      <VideoSection title="Event Videos" videos={event.data.videoLinks} />
+    </div>
+  </section>
+
   <section class="page-section">
     <div class="shell">
       <CalloutPanel
         eyebrow="Participation"
-        title="Use event pages for posters, summaries, and registration links."
-        copy="Replace placeholder text with real event details, venue notes, image recaps, and registration actions as soon as the TSAB team has them."
+        title="Event pages should help members understand what is happening and how to join."
+        copy="Use this page for the poster, schedule, venue, recap, and any public video links. Keep it simple and useful for students who are seeing TSAB for the first time."
         primaryHref={event.data.registrationUrl ?? "/join/"}
         primaryLabel={event.data.registrationUrl ? "Register Now" : "Join TSAB"}
         secondaryHref="/gallery/"

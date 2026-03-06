@@ -2,7 +2,10 @@
 import CalloutPanel from "@/components/CalloutPanel.astro";
 import SectionIntro from "@/components/SectionIntro.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
-import { siteConfig, withBase } from "@/lib/site";
+import { getSiteSettings } from "@/lib/settings";
+import { withBase } from "@/lib/site";
+
+const settings = await getSiteSettings();
 ---
 
 <MainLayout title="Join TSAB">
@@ -10,30 +13,21 @@ import { siteConfig, withBase } from "@/lib/site";
     <div class="shell">
       <SectionIntro
         eyebrow="Join / Contact"
-        title="A single public page for joining, contributing, submitting, and reaching out."
-        copy="Keep all primary actions here so visitors can move from interest to participation without searching through the full site."
+        title="Joining TSAB should feel simple, warm, and easy to understand."
+        copy="Whether you want to join the community, volunteer, submit media, or nominate an achiever, this page should make the next step clear."
       />
       <div class="listing-grid two-up action-grid">
-        <article class="card action-card">
-          <h2>Join the main community</h2>
-          <p>Use the primary community link or form when you are ready to become part of TSAB.</p>
-          <a class="button primary" href={withBase(siteConfig.socialLinks[1]?.href ?? "#")}>Open Join Link</a>
-        </article>
-        <article class="card action-card">
-          <h2>Volunteer with the team</h2>
-          <p>Direct future volunteers toward the outreach, social media, and operations workflow here.</p>
-          <a class="button secondary" href={withBase("https://example.com/tsab-volunteer-form")}>Volunteer Interest Form</a>
-        </article>
-        <article class="card action-card">
-          <h2>Submit media or gallery updates</h2>
-          <p>Use a public upload or collection form later. For now, replace this placeholder with the real process.</p>
-          <a class="button secondary" href={withBase("https://example.com/tsab-media-form")}>Media Submission Link</a>
-        </article>
-        <article class="card action-card">
-          <h2>Nominate an achiever</h2>
-          <p>Use this action to collect future member stories and recognition submissions from the community.</p>
-          <a class="button secondary" href={withBase("https://example.com/tsab-achiever-form")}>Nomination Form</a>
-        </article>
+        {settings.joinActions.map((action, index) => (
+          <article class="card action-card">
+            <p class="action-label">{index === 0 ? "Start Here" : "Public Pathway"}</p>
+            <h2>{action.title}</h2>
+            <p>{action.description}</p>
+            {action.placeholder && <p class="placeholder-note">This is a placeholder action. Replace the public link when TSAB finalizes it.</p>}
+            <a class:list={["button", index === 0 ? "primary" : "secondary"]} href={withBase(action.href)}>
+              {action.label}
+            </a>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -42,9 +36,9 @@ import { siteConfig, withBase } from "@/lib/site";
     <div class="shell">
       <CalloutPanel
         eyebrow="Contact"
-        title="Update placeholder forms and contact links as soon as TSAB finalizes them."
-        copy={`The current placeholder contact email is ${siteConfig.email}. Replace it in src/lib/site.ts, then update the public links here and in the footer.`}
-        primaryHref={`mailto:${siteConfig.email}`}
+        title="Keep the path public, even while some links are still being finalized."
+        copy={`The current public email is ${settings.email}. Replace the remaining placeholder links in the site settings as soon as TSAB has final forms and join URLs.`}
+        primaryHref={`mailto:${settings.email}`}
         primaryLabel="Email TSAB"
         secondaryHref="/working-groups/"
         secondaryLabel="See Working Groups"
@@ -68,7 +62,22 @@ import { siteConfig, withBase } from "@/lib/site";
     font-size: 1.9rem;
   }
 
+  .action-label {
+    margin: 0 0 0.55rem;
+    color: var(--color-brand);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
   .action-card p {
     color: var(--color-muted);
+  }
+
+  .placeholder-note {
+    color: var(--color-brand);
+    font-size: 0.9rem;
+    font-weight: 600;
   }
 </style>
