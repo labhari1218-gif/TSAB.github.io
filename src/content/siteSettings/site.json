@@ -9,7 +9,6 @@
   "missionStripEn": "Together we stand. Together we grow.",
   "missionStripTe": "ఐకమత్యమే మహాబలం",
   "description": "TSAB is a student-led community for Telugu students in Bhopal, built to create belonging, celebrate heritage, share opportunities, and support student growth.",
-  "email": "hello@tsab.example",
   "logoPath": "/images/branding/tsab-logo.png",
   "primaryCtas": {
     "join": {
@@ -36,7 +35,7 @@
     },
     {
       "label": "Join Form",
-      "href": "https://example.com/tsab-join-form"
+      "href": "/join/"
     }
   ],
   "homeThemes": [
@@ -94,20 +93,20 @@
     {
       "title": "Volunteer with TSAB",
       "description": "Help with website updates, social media, campaigns, events, and community communication.",
-      "label": "Volunteer Interest Form",
-      "href": "https://example.com/tsab-volunteer-form"
+      "label": "See Working Groups",
+      "href": "/working-groups/"
     },
     {
       "title": "Submit media or memories",
       "description": "Share event photos, videos, or recap material when the media submission path is ready.",
-      "label": "Media Submission Link",
-      "href": "https://example.com/tsab-media-form"
+      "label": "Explore Gallery",
+      "href": "/gallery/"
     },
     {
       "title": "Nominate an achiever",
       "description": "Recommend student stories and milestones that should be celebrated publicly by TSAB.",
-      "label": "Nomination Form",
-      "href": "https://example.com/tsab-achiever-form"
+      "label": "See Achievers",
+      "href": "/achievers/"
     }
   ]
 }

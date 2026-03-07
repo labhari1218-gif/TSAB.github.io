@@ -1,5 +1,5 @@
 ---
-import { withBase } from "@/lib/site";
+import { isExternalHref, withBase } from "@/lib/site";
 
 interface Props {
   group: {
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { group } = Astro.props;
+const joinHref = withBase(group.data.joinUrl ?? "/join/");
 ---
 
 <article class="card group-card">
@@ -22,7 +23,14 @@ const { group } = Astro.props;
   <h3>{group.data.title}</h3>
   <p>{group.data.purpose}</p>
   <p class="updates"><strong>Updates:</strong> {group.data.updatesType}</p>
-  <a class="button secondary" href={withBase(group.data.joinUrl ?? "/join/")}>{group.data.joinLabel}</a>
+  <a
+    class="button secondary"
+    href={joinHref}
+    target={isExternalHref(joinHref) ? "_blank" : undefined}
+    rel={isExternalHref(joinHref) ? "noreferrer" : undefined}
+  >
+    {group.data.joinLabel}
+  </a>
 </article>
 
 <style>

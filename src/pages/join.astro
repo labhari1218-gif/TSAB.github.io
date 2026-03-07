@@ -3,9 +3,15 @@ import CalloutPanel from "@/components/CalloutPanel.astro";
 import SectionIntro from "@/components/SectionIntro.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { getSiteSettings } from "@/lib/settings";
-import { withBase } from "@/lib/site";
+import { isExternalHref, withBase } from "@/lib/site";
 
 const settings = await getSiteSettings();
+const directChannel =
+  settings.socialLinks.find((link) => /forum|whatsapp/i.test(link.label)) ??
+  settings.socialLinks[0] ?? { label: "See Working Groups", href: "/working-groups/" };
+const contactCopy = settings.email
+  ? `For direct queries, you can reach TSAB at ${settings.email}. You can also use the join and working-group links on this page to find the right pathway.`
+  : "Use the public TSAB channels on this page to join the community, find the right working group, and stay connected.";
 ---
 
 <MainLayout title="Join TSAB">
@@ -22,7 +28,12 @@ const settings = await getSiteSettings();
             <p class="action-label">{index === 0 ? "Start Here" : "Public Pathway"}</p>
             <h2>{action.title}</h2>
             <p>{action.description}</p>
-            <a class:list={["button", index === 0 ? "primary" : "secondary"]} href={withBase(action.href)}>
+            <a
+              class:list={["button", index === 0 ? "primary" : "secondary"]}
+              href={withBase(action.href)}
+              target={isExternalHref(action.href) ? "_blank" : undefined}
+              rel={isExternalHref(action.href) ? "noreferrer" : undefined}
+            >
               {action.label}
             </a>
           </article>
@@ -36,9 +47,9 @@ const settings = await getSiteSettings();
       <CalloutPanel
         eyebrow="Contact"
         title="Use the public contact channels to stay connected with TSAB."
-        copy={`For direct queries, you can reach TSAB at ${settings.email}. You can also use the join and working-group links on this page to find the right pathway.`}
-        primaryHref={`mailto:${settings.email}`}
-        primaryLabel="Email TSAB"
+        copy={contactCopy}
+        primaryHref={settings.email ? `mailto:${settings.email}` : directChannel.href}
+        primaryLabel={settings.email ? "Email TSAB" : directChannel.label}
         secondaryHref="/working-groups/"
         secondaryLabel="See Working Groups"
       />

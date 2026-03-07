@@ -1,6 +1,5 @@
 ---
 title: "Ugadi Album"
-slug: "ugadi-album"
 eventDate: "2025-04-09"
 coverImage: "/images/gallery/album-ugadi-cover.svg"
 coverAlt: "Ugadi album cover for TSAB"

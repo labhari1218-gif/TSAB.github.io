@@ -27,7 +27,7 @@ const siteSettings = defineCollection({
     missionStripEn: z.string(),
     missionStripTe: z.string(),
     description: z.string(),
-    email: z.string().email(),
+    email: z.string().email().optional(),
     logoPath: z.string(),
     heroImagePath: z.string().optional(),
     primaryCtas: z.object({

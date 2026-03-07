@@ -26,6 +26,10 @@ export function withBase(path: string) {
   return `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
+export function isExternalHref(path: string) {
+  return /^https?:\/\//.test(path);
+}
+
 export function withoutBase(path: string) {
   const base = import.meta.env.BASE_URL.endsWith("/")
     ? import.meta.env.BASE_URL.slice(0, -1)

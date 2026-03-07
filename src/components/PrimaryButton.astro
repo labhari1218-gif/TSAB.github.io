@@ -1,5 +1,5 @@
 ---
-import { withBase } from "@/lib/site";
+import { isExternalHref, withBase } from "@/lib/site";
 
 interface Props {
   href: string;
@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { href, label } = Astro.props;
+const resolvedHref = withBase(href);
+const externalAttrs = isExternalHref(resolvedHref) ? { target: "_blank", rel: "noreferrer" } : {};
 ---
 
-<a class="button primary" href={withBase(href)}>{label}</a>
+<a class="button primary" href={resolvedHref} {...externalAttrs}>{label}</a>

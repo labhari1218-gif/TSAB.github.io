@@ -1,6 +1,5 @@
 ---
 title: "Community Service Album"
-slug: "community-service-album"
 eventDate: "2025-09-21"
 coverImage: "/images/gallery/album-service-cover.svg"
 coverAlt: "Community service album cover for TSAB"

@@ -29,7 +29,7 @@ const parsedVideos = parseVideoLinks(videos);
             </div>
             <div class="content">
               <h3>{video.title}</h3>
-              <a class="button secondary" href={video.url}>Watch on YouTube</a>
+              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer">Watch on YouTube</a>
             </div>
           </article>
         ) : (
@@ -38,7 +38,7 @@ const parsedVideos = parseVideoLinks(videos);
               <p class="eyebrow">Video Link</p>
               <h3>{video.title}</h3>
               <p>Open the external video link to watch this recap or event clip.</p>
-              <a class="button secondary" href={video.url}>Watch Video</a>
+              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer">Watch Video</a>
             </div>
           </article>
         )

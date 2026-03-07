@@ -1,8 +1,9 @@
 ---
 import { getSiteSettings } from "@/lib/settings";
-import { navLinks, withBase } from "@/lib/site";
+import { isExternalHref, navLinks, withBase } from "@/lib/site";
 
 const settings = await getSiteSettings();
+const contactFallback = settings.socialLinks[0] ?? { label: "Join TSAB", href: "/join/" };
 ---
 
 <footer class="site-footer">
@@ -25,17 +26,32 @@ const settings = await getSiteSettings();
 
     <section>
       <h3>Contact</h3>
-      <p>
-        <a href={`mailto:${settings.email}`}>{settings.email}</a>
-      </p>
+      {settings.email ? (
+        <p>
+          <a href={`mailto:${settings.email}`}>{settings.email}</a>
+        </p>
+      ) : (
+        <p>Use TSAB&apos;s public channels to stay connected and reach the community team.</p>
+      )}
       <ul>
         {settings.socialLinks.map((link) => (
           <li>
-            <a href={withBase(link.href)}>{link.label}</a>
+            <a
+              href={withBase(link.href)}
+              target={isExternalHref(link.href) ? "_blank" : undefined}
+              rel={isExternalHref(link.href) ? "noreferrer" : undefined}
+            >
+              {link.label}
+            </a>
             {link.note && <span class="link-note">{link.note}</span>}
           </li>
         ))}
       </ul>
+      {!settings.email && (
+        <p class="contact-cta">
+          <a href={withBase(contactFallback.href)}>Open {contactFallback.label}</a>
+        </p>
+      )}
     </section>
   </div>
 </footer>
@@ -96,6 +112,15 @@ const settings = await getSiteSettings();
     margin-top: 0.2rem;
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.58);
+  }
+
+  .contact-cta {
+    margin-top: 1rem;
+  }
+
+  .contact-cta a {
+    color: rgba(255, 255, 255, 0.94);
+    font-weight: 700;
   }
 
   @media (min-width: 900px) {

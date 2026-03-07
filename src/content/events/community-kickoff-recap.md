@@ -1,6 +1,5 @@
 ---
 title: "Community Kickoff Recap"
-slug: "community-kickoff-recap"
 date: "2025-11-18"
 location: "Bhopal Student Center"
 summary: "A recap page for a completed TSAB community gathering with key moments, photos, and follow-up links."

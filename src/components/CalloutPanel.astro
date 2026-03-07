@@ -1,5 +1,5 @@
 ---
-import { withBase } from "@/lib/site";
+import { isExternalHref, withBase } from "@/lib/site";
 
 interface Props {
   eyebrow: string;
@@ -20,6 +20,11 @@ const {
   secondaryHref,
   secondaryLabel
 } = Astro.props;
+const primaryResolvedHref = withBase(primaryHref);
+const primaryExternalAttrs = isExternalHref(primaryResolvedHref) ? { target: "_blank", rel: "noreferrer" } : {};
+const secondaryResolvedHref = secondaryHref ? withBase(secondaryHref) : undefined;
+const secondaryExternalAttrs =
+  secondaryResolvedHref && isExternalHref(secondaryResolvedHref) ? { target: "_blank", rel: "noreferrer" } : {};
 ---
 
 <section class="surface-panel callout-panel">
@@ -27,9 +32,9 @@ const {
   <h2>{title}</h2>
   <p>{copy}</p>
   <div class="actions">
-    <a class="button primary" href={withBase(primaryHref)}>{primaryLabel}</a>
+    <a class="button primary" href={primaryResolvedHref} {...primaryExternalAttrs}>{primaryLabel}</a>
     {secondaryHref && secondaryLabel && (
-      <a class="button secondary" href={withBase(secondaryHref)}>{secondaryLabel}</a>
+      <a class="button secondary" href={secondaryResolvedHref} {...secondaryExternalAttrs}>{secondaryLabel}</a>
     )}
   </div>
 </section>

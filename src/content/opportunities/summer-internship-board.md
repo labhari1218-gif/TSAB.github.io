@@ -1,11 +1,10 @@
 ---
 title: "Summer Internship Board"
-slug: "summer-internship-board"
 category: "internship"
 organization: "Industry Partner"
 deadline: "2026-04-28"
 summary: "A curated internship listing that gives students a quick view of the role, timeline, and official application source."
-sourceUrl: "https://example.com/tsab-internship"
+sourceUrl: "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
 featured: true
 isActive: true
 ---

@@ -1,6 +1,5 @@
 ---
 title: "Ugadi Community Evening"
-slug: "ugadi-community-evening"
 date: "2026-04-12"
 endDate: "2026-04-12"
 location: "Bhopal Campus Auditorium"
@@ -11,7 +10,7 @@ tags:
   - "Culture"
   - "Welcome"
   - "Community"
-registrationUrl: "https://example.com/tsab-ugadi-registration"
+registrationUrl: "/join/"
 status: "upcoming"
 featured: true
 ---

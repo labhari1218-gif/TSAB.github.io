@@ -1,5 +1,5 @@
 ---
-import { withBase } from "@/lib/site";
+import { isExternalHref, withBase } from "@/lib/site";
 
 interface Props {
   member: {
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { member } = Astro.props;
+const contactHref = member.data.contactUrl ? withBase(member.data.contactUrl) : undefined;
 ---
 
 <article class="card team-card">
@@ -26,8 +27,15 @@ const { member } = Astro.props;
     <h3>{member.data.name}</h3>
     <p class="role">{member.data.role}</p>
     <p>{member.data.bio}</p>
-    {member.data.contactLabel && member.data.contactUrl && (
-      <a class="inline-link" href={withBase(member.data.contactUrl)}>{member.data.contactLabel}</a>
+    {member.data.contactLabel && contactHref && (
+      <a
+        class="inline-link"
+        href={contactHref}
+        target={isExternalHref(contactHref) ? "_blank" : undefined}
+        rel={isExternalHref(contactHref) ? "noreferrer" : undefined}
+      >
+        {member.data.contactLabel}
+      </a>
     )}
   </div>
 </article>
