@@ -36,7 +36,6 @@ const settings = await getSiteSettings();
           </li>
         ))}
       </ul>
-      <p class="note">Update public links and brand text from Decap CMS site settings or `src/content/siteSettings/site.json`.</p>
     </section>
   </div>
 </footer>
@@ -52,6 +51,12 @@ const settings = await getSiteSettings();
   .footer-grid {
     display: grid;
     gap: 2rem;
+  }
+
+  .footer-grid > section {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
   }
 
   h2,
@@ -78,10 +83,6 @@ const settings = await getSiteSettings();
 
   li + li {
     margin-top: 0.55rem;
-  }
-
-  .note {
-    font-size: 0.9rem;
   }
 
   .telugu-line {

@@ -13,6 +13,9 @@
   --color-border: rgba(19, 32, 51, 0.12);
   --color-shadow: rgba(9, 20, 43, 0.12);
   --page-width: 1180px;
+  --space-section: clamp(4rem, 7vw, 6.4rem);
+  --space-section-compact: clamp(2.2rem, 4vw, 3.6rem);
+  --space-grid: clamp(1.2rem, 2vw, 1.8rem);
   --radius-sm: 14px;
   --radius-md: 24px;
   --radius-lg: 34px;
@@ -40,7 +43,11 @@ body {
     radial-gradient(circle at top left, rgba(214, 163, 58, 0.18), transparent 28%),
     radial-gradient(circle at top right, rgba(21, 58, 120, 0.18), transparent 30%),
     linear-gradient(180deg, #fffdfa 0%, #f7f9fe 52%, #fbf8f1 100%);
-  line-height: 1.65;
+  line-height: 1.7;
+}
+
+main {
+  display: block;
 }
 
 a {
@@ -70,16 +77,16 @@ summary {
 }
 
 .shell {
-  width: min(calc(100% - 2rem), var(--page-width));
+  width: min(calc(100% - clamp(1.5rem, 4vw, 4rem)), var(--page-width));
   margin: 0 auto;
 }
 
 .page-section {
-  padding: 4.5rem 0;
+  padding: var(--space-section) 0;
 }
 
 .page-section.compact {
-  padding-top: 2.5rem;
+  padding: var(--space-section-compact) 0;
 }
 
 .eyebrow {
@@ -102,7 +109,7 @@ summary {
 
 .section-heading {
   margin: 0.75rem 0 0;
-  max-width: 13ch;
+  max-width: 14ch;
   font-family: "Cormorant Garamond", serif;
   font-size: clamp(2.3rem, 4vw, 4.3rem);
   line-height: 0.95;
@@ -113,7 +120,7 @@ summary {
   max-width: 62ch;
   margin: 1rem 0 0;
   color: var(--color-muted);
-  font-size: 1.02rem;
+  font-size: clamp(1rem, 1.4vw, 1.06rem);
 }
 
 .grid {
@@ -186,7 +193,7 @@ summary {
 .surface-panel {
   position: relative;
   overflow: hidden;
-  padding: 1.5rem;
+  padding: clamp(1.35rem, 2vw, 2rem);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(21, 58, 120, 0.11);
   background:
@@ -231,13 +238,24 @@ summary {
 
 .split-hero {
   display: grid;
-  gap: 1.5rem;
+  gap: clamp(1.4rem, 2.4vw, 2.2rem);
   align-items: stretch;
 }
 
 .listing-grid {
   display: grid;
-  gap: 1.4rem;
+  gap: var(--space-grid);
+}
+
+.section-intro {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  margin-bottom: clamp(1.5rem, 2.8vw, 2.4rem);
+}
+
+.section-intro.compact {
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .motif {
@@ -293,10 +311,6 @@ summary {
 }
 
 @media (min-width: 720px) {
-  .page-section {
-    padding: 5.5rem 0;
-  }
-
   .split-hero {
     grid-template-columns: 1.2fr 0.8fr;
   }
