@@ -36,9 +36,45 @@ function renderCallbackPage({ title, message, targetOrigin, adminPanelUrl }) {
       (function () {
         var message = ${JSON.stringify(message)};
         var targetOrigin = ${JSON.stringify(targetOrigin)};
+        var handshakeMessage = 'authorizing:github';
+        var attempts = 0;
+        var intervalId = null;
+
+        function sendFinalMessage() {
+          if (window.opener) {
+            window.opener.postMessage(message, targetOrigin);
+          }
+        }
+
+        function stopAndClose() {
+          if (intervalId) {
+            window.clearInterval(intervalId);
+            intervalId = null;
+          }
+          setTimeout(function () { window.close(); }, 400);
+        }
+
         if (window.opener) {
-          window.opener.postMessage(message, targetOrigin);
-          setTimeout(function () { window.close(); }, 150);
+          window.addEventListener('message', function (event) {
+            if (event.origin !== targetOrigin) {
+              return;
+            }
+
+            sendFinalMessage();
+            stopAndClose();
+          });
+
+          window.opener.postMessage(handshakeMessage, '*');
+          setTimeout(sendFinalMessage, 300);
+          intervalId = window.setInterval(function () {
+            attempts += 1;
+            window.opener.postMessage(handshakeMessage, '*');
+            sendFinalMessage();
+
+            if (attempts >= 12) {
+              stopAndClose();
+            }
+          }, 500);
         }
       })();
     </script>
