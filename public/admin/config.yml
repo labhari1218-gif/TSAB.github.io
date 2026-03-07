@@ -2,8 +2,8 @@ backend:
   name: github
   repo: labhari1218-gif/TSAB.github.io
   branch: main
-  base_url: https://tsab-decap-oauth.vercel.app/api
-  auth_endpoint: auth
+  base_url: https://tsab-decap-oauth.vercel.app
+  auth_endpoint: api/auth
   use_graphql: true
 
 local_backend: true

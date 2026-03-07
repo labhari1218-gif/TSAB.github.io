@@ -24,6 +24,7 @@ Create a GitHub OAuth App with:
 - Authorization callback URL:
   `https://tsab-decap-oauth.vercel.app/api/callback`
 
-After deployment, replace `base_url` in `public/admin/config.yml` with:
+After deployment, configure Decap in `public/admin/config.yml` with:
 
-`https://tsab-decap-oauth.vercel.app/api`
+- `base_url: https://tsab-decap-oauth.vercel.app`
+- `auth_endpoint: api/auth`
