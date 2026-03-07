@@ -1,8 +1,8 @@
 ---
 name: "Core Team Member"
-role: "Operations Lead Placeholder"
+role: "Operations Lead"
 group: "core"
 photo: "/images/team/team-placeholder.svg"
-bio: "Use placeholder team cards at launch, then replace them with real names, photos, and role summaries."
+bio: "Supports coordination, execution, and follow-through so public TSAB activities stay organized and easy to run."
 sortOrder: 2
 ---

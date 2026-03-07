@@ -1,8 +1,8 @@
 ---
 name: "Alumni Mentor"
-role: "Mentor Placeholder"
+role: "Alumni Mentor"
 group: "alumni-mentor"
 photo: "/images/team/team-placeholder.svg"
-bio: "Optional mentor cards can be used later if TSAB wants to show alumni support or guidance."
+bio: "A mentor profile can be used to highlight alumni guidance, career support, or long-term community connection."
 sortOrder: 8
 ---

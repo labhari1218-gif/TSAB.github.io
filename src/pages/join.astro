@@ -22,7 +22,6 @@ const settings = await getSiteSettings();
             <p class="action-label">{index === 0 ? "Start Here" : "Public Pathway"}</p>
             <h2>{action.title}</h2>
             <p>{action.description}</p>
-            {action.placeholder && <p class="placeholder-note">This is a placeholder action. Replace the public link when TSAB finalizes it.</p>}
             <a class:list={["button", index === 0 ? "primary" : "secondary"]} href={withBase(action.href)}>
               {action.label}
             </a>
@@ -36,8 +35,8 @@ const settings = await getSiteSettings();
     <div class="shell">
       <CalloutPanel
         eyebrow="Contact"
-        title="Keep the path public, even while some links are still being finalized."
-        copy={`The current public email is ${settings.email}. Replace the remaining placeholder links in the site settings as soon as TSAB has final forms and join URLs.`}
+        title="Use the public contact channels to stay connected with TSAB."
+        copy={`For direct queries, you can reach TSAB at ${settings.email}. You can also use the join and working-group links on this page to find the right pathway.`}
         primaryHref={`mailto:${settings.email}`}
         primaryLabel="Email TSAB"
         secondaryHref="/working-groups/"
@@ -73,11 +72,5 @@ const settings = await getSiteSettings();
 
   .action-card p {
     color: var(--color-muted);
-  }
-
-  .placeholder-note {
-    color: var(--color-brand);
-    font-size: 0.9rem;
-    font-weight: 600;
   }
 </style>

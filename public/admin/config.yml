@@ -101,7 +101,6 @@ collections:
               - { label: Description, name: description, widget: text }
               - { label: Button Label, name: label, widget: string }
               - { label: Href, name: href, widget: string }
-              - { label: Placeholder Link, name: placeholder, widget: boolean, required: false }
 
   - label: Announcements
     name: announcements

@@ -74,14 +74,13 @@ Configured deployment target:
 - Site URL: `https://labhari1218-gif.github.io`
 - Base path: `/TSAB.github.io`
 
-## Replace placeholders before public launch
+## Keep Content Current
 
-Current v1 content intentionally includes starter/demo placeholders for:
+The site structure and CMS are ready. Keep the public experience current by updating:
 
-- team members
+- site settings
+- join and contact links
+- events and opportunities
 - achiever stories
-- event posters
-- gallery imagery
-- join/contact links
-
-Update these before publishing the production version widely.
+- team details
+- gallery albums and photos

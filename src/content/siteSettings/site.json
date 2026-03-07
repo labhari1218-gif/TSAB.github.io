@@ -28,18 +28,15 @@
   "socialLinks": [
     {
       "label": "Instagram",
-      "href": "https://instagram.com/tsab.community",
-      "note": "Replace with the official TSAB Instagram URL."
+      "href": "https://instagram.com/tsab.community"
     },
     {
       "label": "WhatsApp",
-      "href": "https://example.com/tsab-whatsapp",
-      "note": "Placeholder join link. Replace with the public TSAB invite."
+      "href": "https://example.com/tsab-whatsapp"
     },
     {
       "label": "Join Form",
-      "href": "https://example.com/tsab-join-form",
-      "note": "Placeholder form. Replace when a public form is ready."
+      "href": "https://example.com/tsab-join-form"
     }
   ],
   "homeThemes": [
@@ -92,29 +89,25 @@
       "title": "Join the main TSAB community",
       "description": "Start with the main public join link and become part of the Telugu student community in Bhopal.",
       "label": "Open Join Link",
-      "href": "https://example.com/tsab-whatsapp",
-      "placeholder": true
+      "href": "https://example.com/tsab-whatsapp"
     },
     {
       "title": "Volunteer with TSAB",
       "description": "Help with website updates, social media, campaigns, events, and community communication.",
       "label": "Volunteer Interest Form",
-      "href": "https://example.com/tsab-volunteer-form",
-      "placeholder": true
+      "href": "https://example.com/tsab-volunteer-form"
     },
     {
       "title": "Submit media or memories",
       "description": "Share event photos, videos, or recap material when the media submission path is ready.",
       "label": "Media Submission Link",
-      "href": "https://example.com/tsab-media-form",
-      "placeholder": true
+      "href": "https://example.com/tsab-media-form"
     },
     {
       "title": "Nominate an achiever",
       "description": "Recommend student stories and milestones that should be celebrated publicly by TSAB.",
       "label": "Nomination Form",
-      "href": "https://example.com/tsab-achiever-form",
-      "placeholder": true
+      "href": "https://example.com/tsab-achiever-form"
     }
   ]
 }

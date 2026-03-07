@@ -20,7 +20,7 @@ const { member } = Astro.props;
 <article class="card team-card">
   <img
     src={withBase(member.data.photo ?? "/images/team/team-placeholder.svg")}
-    alt={member.data.photo ? `${member.data.name} portrait` : `${member.data.name} placeholder portrait`}
+    alt={member.data.photo ? `${member.data.name} portrait` : `${member.data.name} profile image`}
   />
   <div class="content">
     <h3>{member.data.name}</h3>

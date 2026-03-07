@@ -1,10 +1,10 @@
 ---
 name: "Core Team Member"
-role: "President / Lead Placeholder"
+role: "President / Lead"
 group: "core"
 photo: "/images/team/team-placeholder.svg"
-bio: "Replace with the real TSAB leadership role and short bio once the team list is finalized."
+bio: "Leads the overall direction of TSAB and helps keep community efforts aligned across events, support, and outreach."
 sortOrder: 1
-contactLabel: "Contact Placeholder"
+contactLabel: "Contact"
 contactUrl: "mailto:hello@tsab.example"
 ---

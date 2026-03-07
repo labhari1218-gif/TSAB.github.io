@@ -3,8 +3,8 @@
   <rect x="52" y="52" width="856" height="656" rx="36" fill="#FBF8F1"/>
   <circle cx="744" cy="232" r="118" fill="#153A78"/>
   <circle cx="744" cy="232" r="48" fill="#D6A33A"/>
-  <text x="96" y="172" fill="#153A78" font-family="Sora, Arial, sans-serif" font-size="24" font-weight="700">ALBUM PLACEHOLDER</text>
+  <text x="96" y="172" fill="#153A78" font-family="Sora, Arial, sans-serif" font-size="24" font-weight="700">PHOTO ALBUM</text>
   <text x="96" y="278" fill="#153A78" font-family="Cormorant Garamond, serif" font-size="88" font-weight="700">Community</text>
   <text x="96" y="350" fill="#153A78" font-family="Cormorant Garamond, serif" font-size="88" font-weight="700">Service Day</text>
-  <text x="96" y="416" fill="#51607A" font-family="Sora, Arial, sans-serif" font-size="28">Use album covers like this until real photography is ready</text>
+  <text x="96" y="416" fill="#51607A" font-family="Sora, Arial, sans-serif" font-size="28">Community moments, volunteer effort, and a shared sense of purpose</text>
 </svg>

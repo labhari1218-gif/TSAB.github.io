@@ -1,19 +1,19 @@
 ---
-title: "Starter Demo: Community Service Album"
+title: "Community Service Album"
 slug: "community-service-album"
 eventDate: "2025-09-21"
 coverImage: "/images/gallery/album-service-cover.svg"
-coverAlt: "Starter album cover for a TSAB community service gallery"
+coverAlt: "Community service album cover for TSAB"
 images:
   - src: "/images/gallery/service-01.svg"
-    alt: "Placeholder volunteer moment image for the TSAB community service album"
+    alt: "Volunteer moment from a TSAB community service activity"
   - src: "/images/gallery/service-02.svg"
-    alt: "Placeholder group capture image for the TSAB community service album"
+    alt: "Group photo from a TSAB community service activity"
   - src: "/images/gallery/service-03.svg"
-    alt: "Placeholder recap detail image for the TSAB community service album"
-summary: "Placeholder album for non-festival activities, volunteer events, or student outreach documentation."
+    alt: "Event detail from a TSAB community service activity"
+summary: "An album for volunteer activities, outreach, and community service moments documented by TSAB."
 year: 2025
 featured: true
 ---
 
-Albums should stay event-based so the archive remains organized as TSAB grows.
+Keep albums event-based so the archive stays clear, browsable, and easy to maintain.

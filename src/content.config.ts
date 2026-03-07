@@ -78,8 +78,7 @@ const siteSettings = defineCollection({
         title: z.string(),
         description: z.string(),
         label: z.string(),
-        href: linkSchema,
-        placeholder: z.boolean().optional()
+        href: linkSchema
       })
     )
   })

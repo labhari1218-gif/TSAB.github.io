@@ -1,22 +1,15 @@
 ---
-name: "Featured Member Story"
+name: "Featured Member"
 slug: "featured-achiever-story"
-institute: "Placeholder Institute, Bhopal"
+institute: "Bhopal Institute"
 program: "B.Tech / Example Program"
 batch: "2026"
-achievementTitle: "Starter Demo: Visible Student Achievement"
-summary: "Placeholder achiever content showing how TSAB can spotlight real milestones once official stories and media are ready."
+achievementTitle: "Student Achievement Spotlight"
+summary: "A featured TSAB achiever story that highlights a student milestone, growth journey, or meaningful accomplishment."
 photo: "/images/placeholders/achiever-placeholder.svg"
-photoAlt: "Placeholder achiever portrait for a future TSAB member story"
+photoAlt: "Featured TSAB achiever portrait"
 externalUrl: "https://example.com/tsab-achiever-story"
 featured: true
 ---
 
-Replace this demo entry with a real member story.
-
-Recommended structure for future achiever posts:
-
-- what the member accomplished
-- why the milestone matters
-- a short quote or reflection if available
-- an external link only if there is a trustworthy source to point to
+Use achiever stories to explain what the member accomplished, why it matters, and how the milestone can inspire other students.

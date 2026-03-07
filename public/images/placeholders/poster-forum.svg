@@ -4,7 +4,7 @@
   <path d="M126 154H490V190H126V154Z" fill="#153A78"/>
   <text x="126" y="286" fill="#153A78" font-family="Cormorant Garamond, serif" font-size="96" font-weight="700">Community</text>
   <text x="126" y="368" fill="#153A78" font-family="Cormorant Garamond, serif" font-size="96" font-weight="700">Kickoff Recap</text>
-  <text x="126" y="444" fill="#51607A" font-family="Sora, Arial, sans-serif" font-size="28">Starter placeholder used for past-event archive pages</text>
+  <text x="126" y="444" fill="#51607A" font-family="Sora, Arial, sans-serif" font-size="28">A clean event archive for memories, updates, and community highlights</text>
   <circle cx="1006" cy="294" r="122" fill="#153A78"/>
   <circle cx="1006" cy="294" r="52" fill="#D6A33A"/>
 </svg>

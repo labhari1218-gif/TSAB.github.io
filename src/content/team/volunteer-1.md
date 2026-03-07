@@ -1,8 +1,8 @@
 ---
 name: "Volunteer"
-role: "Community Volunteer Placeholder"
+role: "Community Volunteer"
 group: "volunteer"
 photo: "/images/team/team-placeholder.svg"
-bio: "Use volunteer cards to show that TSAB participation extends beyond a small committee."
+bio: "Supports community activities and helps members feel welcomed, informed, and included in TSAB events."
 sortOrder: 5
 ---

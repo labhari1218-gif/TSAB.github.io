@@ -1,8 +1,8 @@
 ---
 name: "Volunteer"
-role: "Social Media Volunteer Placeholder"
+role: "Social Media Volunteer"
 group: "volunteer"
 photo: "/images/team/team-placeholder.svg"
-bio: "Replace with a real volunteer once roles and consent for public listing are confirmed."
+bio: "Supports public communication, updates, and content publishing across social and web channels."
 sortOrder: 6
 ---
