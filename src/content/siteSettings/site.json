@@ -7,7 +7,7 @@
   "headlineTe": "తెలుగు సంఘం – భోపాల్",
   "heroSupportingText": "TSAB brings Telugu students together through community, culture, opportunities, support, and shared growth.",
   "missionStripEn": "Together we stand. Together we grow.",
-  "missionStripTe": "ఏకమత్యమే మహాబలం",
+  "missionStripTe": "ఐకమత్యమే మహాబలం",
   "description": "TSAB is a student-led community for Telugu students in Bhopal, built to create belonging, celebrate heritage, share opportunities, and support student growth.",
   "email": "hello@tsab.example",
   "logoPath": "/images/branding/tsab-logo.png",
@@ -28,11 +28,11 @@
   "socialLinks": [
     {
       "label": "Instagram",
-      "href": "https://instagram.com/tsab.community"
+      "href": "https://instagram.com/tsabhopal?igsh=aXI2Z2tncXBqbQ%3D%3D"
     },
     {
-      "label": "WhatsApp",
-      "href": "https://example.com/tsab-whatsapp"
+      "label": "TSAB Forum",
+      "href": "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
     },
     {
       "label": "Join Form",
@@ -83,13 +83,13 @@
     "Create a family-like environment away from home"
   ],
   "footerTaglineEn": "Together we stand. Together we grow.",
-  "footerTaglineTe": "ఏకమత్యమే మహాబలం",
+  "footerTaglineTe": "ఐకమత్యమే మహాబలం",
   "joinActions": [
     {
-      "title": "Join the main TSAB community",
-      "description": "Start with the main public join link and become part of the Telugu student community in Bhopal.",
-      "label": "Open Join Link",
-      "href": "https://example.com/tsab-whatsapp"
+      "title": "Join the TSAB Forum",
+      "description": "Enter the TSAB Forum to stay connected with opportunities, updates, and the wider Telugu student network in Bhopal.",
+      "label": "Open TSAB Forum",
+      "href": "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
     },
     {
       "title": "Volunteer with TSAB",
