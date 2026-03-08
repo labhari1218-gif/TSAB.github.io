@@ -9,4 +9,4 @@ featured: false
 isActive: true
 ---
 
-Keep the website entry concise and direct students to the official page for rules, deadlines, and registration.
+Explore the official page for eligibility, rules, deadlines, and registration details before applying.

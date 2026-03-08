@@ -15,4 +15,4 @@ status: "upcoming"
 featured: true
 ---
 
-Keep the event page focused on the essentials: what the event is, where it happens, when to arrive, and how to register or join.
+Celebrate Ugadi with the TSAB community through cultural performances, welcoming activities, and shared festive time in Bhopal.

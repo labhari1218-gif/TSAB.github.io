@@ -71,7 +71,7 @@
     "whoCanJoinTitle": "Who can join",
     "whoCanJoinBody": "Any Telugu student in Bhopal who wants belonging, support, cultural connection, opportunities, or a way to contribute to the wider community.",
     "familiarSpaceTitle": "Why it matters",
-    "familiarSpaceBody": "TSAB should feel warm, simple, and useful. It exists so students can find people, get help, stay connected to Telugu identity, and grow together."
+    "familiarSpaceBody": "TSAB is warm, simple, and useful. It exists so students can find people, get help, stay connected to Telugu identity, and grow together."
   },
   "aboutMissionPoints": [
     "Unite Telugu students in Bhopal",
@@ -104,7 +104,7 @@
     },
     {
       "title": "Nominate an achiever",
-      "description": "Recommend student stories and milestones that should be celebrated publicly by TSAB.",
+      "description": "Recommend student stories and milestones that deserve to be celebrated publicly by TSAB.",
       "label": "See Achievers",
       "href": "/achievers/"
     }
