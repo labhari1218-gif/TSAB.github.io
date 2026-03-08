@@ -4,6 +4,14 @@ const linkSchema = z.string().refine((value) => /^(https?:|mailto:|tel:|\/)/.tes
   message: "Expected an absolute URL or site-relative path."
 });
 
+const dateFieldSchema = z.union([z.string(), z.date()]).transform((value) => {
+  if (value instanceof Date) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return value;
+});
+
 const videoLinkSchema = z.object({
   title: z.string(),
   url: linkSchema
@@ -88,8 +96,8 @@ const events = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    date: z.string(),
-    endDate: z.string().optional(),
+    date: dateFieldSchema,
+    endDate: dateFieldSchema.optional(),
     location: z.string(),
     summary: z.string(),
     coverImage: z.string(),
@@ -108,7 +116,7 @@ const opportunities = defineCollection({
     title: z.string(),
     category: z.enum(["internship", "job", "hackathon", "scholarship", "resource"]),
     organization: z.string(),
-    deadline: z.string().optional(),
+    deadline: dateFieldSchema.optional(),
     summary: z.string(),
     sourceUrl: linkSchema,
     featured: z.boolean().optional(),
@@ -150,7 +158,7 @@ const galleryAlbums = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    eventDate: z.string(),
+    eventDate: dateFieldSchema,
     coverImage: z.string(),
     coverAlt: z.string().optional(),
     images: z.array(imageItemSchema),
@@ -178,7 +186,7 @@ const announcements = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    date: z.string(),
+    date: dateFieldSchema,
     summary: z.string(),
     ctaLabel: z.string().optional(),
     ctaUrl: linkSchema.optional(),
