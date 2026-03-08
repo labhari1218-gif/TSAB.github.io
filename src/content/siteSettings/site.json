@@ -30,6 +30,10 @@
       "href": "https://instagram.com/tsabhopal?igsh=aXI2Z2tncXBqbQ%3D%3D"
     },
     {
+      "label": "TSAB Community",
+      "href": "https://chat.whatsapp.com/H4Q1u9iFhAR5gUnvm3bXjj"
+    },
+    {
       "label": "TSAB Forum",
       "href": "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
     },
@@ -85,10 +89,10 @@
   "footerTaglineTe": "ఐకమత్యమే మహాబలం",
   "joinActions": [
     {
-      "title": "Join the TSAB Forum",
-      "description": "Enter the TSAB Forum to stay connected with opportunities, updates, and the wider Telugu student network in Bhopal.",
-      "label": "Open TSAB Forum",
-      "href": "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
+      "title": "Join the TSAB Community",
+      "description": "Enter the main TSAB community to stay connected with welcomes, updates, festival wishes, and the wider Telugu student network in Bhopal.",
+      "label": "Open Community Link",
+      "href": "https://chat.whatsapp.com/H4Q1u9iFhAR5gUnvm3bXjj"
     },
     {
       "title": "Volunteer with TSAB",
