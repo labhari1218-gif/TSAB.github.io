@@ -20,9 +20,15 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
 
   <section class="page-section compact">
     <div class="shell">
-      <div class="listing-grid two-up">
+      <div class="listing-grid two-up pathways-grid">
         {groups.map((group) => <GroupCard group={group} />)}
       </div>
     </div>
   </section>
 </MainLayout>
+
+<style>
+  .pathways-grid {
+    position: relative;
+  }
+</style>

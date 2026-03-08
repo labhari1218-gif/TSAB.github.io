@@ -3,12 +3,19 @@ interface Props {
   eyebrow: string;
   title: string;
   description: string;
+  index?: number;
 }
 
-const { eyebrow, title, description } = Astro.props;
+const { eyebrow, title, description, index = 0 } = Astro.props;
 ---
 
-<article class="card feature-card reveal">
+<article
+  class:list={["card feature-card", index === 0 && "is-primary", index === 2 && "is-accent"]}
+  data-spotlight
+  data-tilt
+  data-reveal
+  data-reveal-delay={String(index > 2 ? 2 : index)}
+>
   <p class="feature-eyebrow">{eyebrow}</p>
   <h3>{title}</h3>
   <p>{description}</p>
@@ -16,8 +23,11 @@ const { eyebrow, title, description } = Astro.props;
 
 <style>
   .feature-card {
-    padding: 1.5rem;
-    min-height: 15rem;
+    display: grid;
+    align-content: end;
+    gap: 0.6rem;
+    padding: 1.55rem;
+    min-height: 17.5rem;
   }
 
   .feature-eyebrow {
@@ -30,11 +40,25 @@ const { eyebrow, title, description } = Astro.props;
 
   h3 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.55rem;
+    font-family: "Cormorant Garamond", serif;
+    line-height: 1;
   }
 
   p:last-child {
     margin-bottom: 0;
     color: var(--color-muted);
+  }
+
+  .is-primary {
+    background:
+      radial-gradient(circle at 82% 18%, rgba(214, 163, 58, 0.2), transparent 26%),
+      linear-gradient(145deg, rgba(21, 58, 120, 0.08), rgba(255, 255, 255, 0.96));
+  }
+
+  .is-accent {
+    background:
+      radial-gradient(circle at 18% 22%, rgba(21, 58, 120, 0.14), transparent 24%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(245, 222, 177, 0.2));
   }
 </style>

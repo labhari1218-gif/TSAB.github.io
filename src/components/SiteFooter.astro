@@ -8,14 +8,14 @@ const contactFallback = settings.socialLinks[0] ?? { label: "Join TSAB", href: "
 
 <footer class="site-footer">
   <div class="shell footer-grid">
-    <section>
+    <section class="footer-brand card" data-spotlight data-reveal>
       <p class="eyebrow">TSAB</p>
       <h2>{settings.fullName}</h2>
       <p>{settings.footerTaglineEn}</p>
       <p class="telugu-line">{settings.footerTaglineTe}</p>
     </section>
 
-    <section>
+    <section class="footer-links" data-reveal data-reveal-delay="1">
       <h3>Quick Links</h3>
       <ul>
         {navLinks.map((link) => (
@@ -24,7 +24,7 @@ const contactFallback = settings.socialLinks[0] ?? { label: "Join TSAB", href: "
       </ul>
     </section>
 
-    <section>
+    <section class="footer-links" data-reveal data-reveal-delay="2">
       <h3>Contact</h3>
       {settings.email ? (
         <p>
@@ -58,31 +58,43 @@ const contactFallback = settings.socialLinks[0] ?? { label: "Join TSAB", href: "
 
 <style>
   .site-footer {
-    margin-top: 5rem;
-    padding: 3rem 0;
-    background: linear-gradient(180deg, rgba(13, 37, 83, 0.97), rgba(10, 24, 53, 1));
+    position: relative;
+    margin-top: 6rem;
+    padding: 3.6rem 0;
+    background:
+      radial-gradient(circle at top center, rgba(214, 163, 58, 0.14), transparent 28%),
+      linear-gradient(180deg, rgba(13, 37, 83, 0.98), rgba(9, 24, 53, 1));
     color: rgba(255, 255, 255, 0.88);
   }
 
   .footer-grid {
     display: grid;
-    gap: 2rem;
+    gap: 1.4rem;
   }
 
   .footer-grid > section {
     display: grid;
     align-content: start;
-    gap: 0.65rem;
+    gap: 0.7rem;
   }
 
-  h2,
-  h3 {
+  .footer-brand,
+  .footer-links {
+    position: relative;
+    padding: 1.45rem;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+  }
+
+  h2, h3 {
     margin: 0;
     font-family: "Cormorant Garamond", serif;
   }
 
   h2 {
-    font-size: 2rem;
+    font-size: 2.3rem;
   }
 
   p,
@@ -125,7 +137,7 @@ const contactFallback = settings.socialLinks[0] ?? { label: "Join TSAB", href: "
 
   @media (min-width: 900px) {
     .footer-grid {
-      grid-template-columns: 1.25fr 0.75fr 0.85fr;
+      grid-template-columns: 1.2fr 0.75fr 0.85fr;
     }
   }
 </style>

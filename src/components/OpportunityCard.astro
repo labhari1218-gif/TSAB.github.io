@@ -19,7 +19,7 @@ interface Props {
 const { opportunity } = Astro.props;
 ---
 
-<article class="card opportunity-card">
+<article class="card opportunity-card" data-spotlight data-tilt data-reveal>
   <div class="head">
     <span class="badge">{slugifyLabel(opportunity.data.category).replace("-", " ")}</span>
     {opportunity.data.deadline && <span class="deadline">Deadline {formatDate(opportunity.data.deadline)}</span>}
@@ -31,7 +31,7 @@ const { opportunity } = Astro.props;
 
 <style>
   .opportunity-card {
-    padding: 1.35rem;
+    padding: 1.4rem;
   }
 
   .head {
@@ -61,7 +61,9 @@ const { opportunity } = Astro.props;
 
   h3 {
     margin: 1rem 0 0.4rem;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
+    font-family: "Cormorant Garamond", serif;
+    line-height: 1;
   }
 
   .org {

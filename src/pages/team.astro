@@ -31,7 +31,7 @@ const groups = [
         const groupMembers = members.filter((member) => member.data.group === group.key);
         return (
           <section class="team-group">
-            <h2>{group.title}</h2>
+            <h2 data-reveal>{group.title}</h2>
             <div class="listing-grid four-up">
               {groupMembers.map((member) => <TeamCard member={member} />)}
             </div>

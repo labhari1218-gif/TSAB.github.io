@@ -20,14 +20,14 @@ const { Content } = await render(opportunity);
 <MainLayout title={`${opportunity.data.title} | TSAB Opportunities`} description={opportunity.data.summary}>
   <section class="page-section">
     <div class="shell detail-shell">
-      <div class="surface-panel">
+      <div class="surface-panel ambient-grid" data-spotlight data-reveal>
         <div class="eyebrow">{opportunity.data.category}</div>
         <h1>{opportunity.data.title}</h1>
         <p class="organization">{opportunity.data.organization}</p>
         {opportunity.data.deadline && <p class="deadline">Deadline: {formatDate(opportunity.data.deadline)}</p>}
         <p class="summary">{opportunity.data.summary}</p>
       </div>
-      <aside class="card info-card">
+      <aside class="card info-card" data-spotlight data-tilt data-reveal data-reveal-delay="1">
         <h2>Why it matters</h2>
         <p>
           TSAB shares opportunities that are genuinely useful to Telugu students in Bhopal and keeps

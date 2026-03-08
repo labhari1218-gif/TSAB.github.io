@@ -1,4 +1,5 @@
 ---
+import StackedAlbumPreview from "@/components/StackedAlbumPreview.astro";
 import { withBase } from "@/lib/site";
 import { formatDate } from "@/lib/utils";
 
@@ -19,8 +20,13 @@ interface Props {
 const { album } = Astro.props;
 ---
 
-<article class="card album-card">
-  <img src={withBase(album.data.coverImage)} alt={album.data.coverAlt ?? `${album.data.title} album cover`} />
+<article class="card album-card" data-spotlight data-tilt data-reveal>
+  <StackedAlbumPreview
+    coverImage={album.data.coverImage}
+    coverAlt={album.data.coverAlt}
+    images={album.data.images}
+    title={album.data.title}
+  />
   <div class="content">
     <p class="meta">{formatDate(album.data.eventDate)} · {album.data.images.length} images</p>
     <h3><a href={withBase(`/gallery/${album.slug}/`)}>{album.data.title}</a></h3>
@@ -33,15 +39,8 @@ const { album } = Astro.props;
     overflow: hidden;
   }
 
-  img {
-    aspect-ratio: 5 / 4;
-    width: 100%;
-    object-fit: cover;
-    background: linear-gradient(135deg, rgba(21, 58, 120, 0.22), rgba(214, 163, 58, 0.18));
-  }
-
   .content {
-    padding: 1.3rem;
+    padding: 0.2rem 1.3rem 1.35rem;
   }
 
   .meta {
@@ -53,7 +52,8 @@ const { album } = Astro.props;
 
   h3 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.45rem;
+    font-family: "Cormorant Garamond", serif;
   }
 
   p:last-child {

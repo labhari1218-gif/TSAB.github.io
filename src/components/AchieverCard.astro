@@ -18,8 +18,10 @@ interface Props {
 const { achiever } = Astro.props;
 ---
 
-<article class="card achiever-card">
-  <img src={withBase(achiever.data.photo)} alt={achiever.data.photoAlt ?? `${achiever.data.name} portrait`} />
+<article class="card achiever-card" data-spotlight data-tilt data-reveal>
+  <div class="portrait-frame">
+    <img src={withBase(achiever.data.photo)} alt={achiever.data.photoAlt ?? `${achiever.data.name} portrait`} />
+  </div>
   <div class="content">
     <p class="meta">{achiever.data.institute}</p>
     <h3><a href={withBase(`/achievers/${achiever.slug}/`)}>{achiever.data.name}</a></h3>
@@ -33,15 +35,20 @@ const { achiever } = Astro.props;
     overflow: hidden;
   }
 
+  .portrait-frame {
+    padding: 0.9rem 0.9rem 0;
+  }
+
   img {
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    border-radius: calc(var(--radius-md) - 10px);
     background: linear-gradient(145deg, rgba(21, 58, 120, 0.25), rgba(214, 163, 58, 0.18));
   }
 
   .content {
-    padding: 1.35rem;
+    padding: 1.15rem 1.35rem 1.35rem;
   }
 
   .meta,
@@ -61,7 +68,8 @@ const { achiever } = Astro.props;
 
   h3 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.55rem;
+    font-family: "Cormorant Garamond", serif;
   }
 
   p:last-child {

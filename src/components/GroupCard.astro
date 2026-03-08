@@ -18,7 +18,7 @@ const { group } = Astro.props;
 const joinHref = withBase(group.data.joinUrl ?? "/join/");
 ---
 
-<article class="card group-card">
+<article class="card group-card" data-spotlight data-tilt data-reveal>
   <p class="audience">{group.data.audience}</p>
   <h3>{group.data.title}</h3>
   <p>{group.data.purpose}</p>
@@ -26,6 +26,7 @@ const joinHref = withBase(group.data.joinUrl ?? "/join/");
   <a
     class="button secondary"
     href={joinHref}
+    data-magnetic
     target={isExternalHref(joinHref) ? "_blank" : undefined}
     rel={isExternalHref(joinHref) ? "noreferrer" : undefined}
   >
@@ -35,7 +36,7 @@ const joinHref = withBase(group.data.joinUrl ?? "/join/");
 
 <style>
   .group-card {
-    padding: 1.4rem;
+    padding: 1.45rem;
   }
 
   .audience {
@@ -49,7 +50,8 @@ const joinHref = withBase(group.data.joinUrl ?? "/join/");
 
   h3 {
     margin: 0 0 0.6rem;
-    font-size: 1.3rem;
+    font-size: 1.55rem;
+    font-family: "Cormorant Garamond", serif;
   }
 
   p {

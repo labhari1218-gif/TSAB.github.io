@@ -23,8 +23,9 @@ const { Content } = await render(achiever);
         class="portrait"
         src={withBase(achiever.data.photo)}
         alt={achiever.data.photoAlt ?? `${achiever.data.name} portrait`}
+        data-reveal
       />
-      <div class="surface-panel">
+      <div class="surface-panel ambient-grid" data-spotlight data-reveal data-reveal-delay="1">
         <div class="eyebrow">Featured Story</div>
         <h1>{achiever.data.name}</h1>
         <p class="meta">{achiever.data.institute}</p>

@@ -24,13 +24,14 @@ const contactCopy = settings.email
       />
       <div class="listing-grid two-up action-grid">
         {settings.joinActions.map((action, index) => (
-          <article class="card action-card">
+          <article class="card action-card" data-spotlight data-tilt data-reveal data-reveal-delay={String(index > 2 ? 2 : index)}>
             <p class="action-label">{index === 0 ? "Start Here" : "Public Pathway"}</p>
             <h2>{action.title}</h2>
             <p>{action.description}</p>
             <a
               class:list={["button", index === 0 ? "primary" : "secondary"]}
               href={withBase(action.href)}
+              data-magnetic
               target={isExternalHref(action.href) ? "_blank" : undefined}
               rel={isExternalHref(action.href) ? "noreferrer" : undefined}
             >

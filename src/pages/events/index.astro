@@ -24,7 +24,7 @@ const pastEvents = events.filter((item) => item.data.status === "past");
 
   <section class="page-section compact">
     <div class="shell">
-      <h2 class="group-title">Upcoming Events</h2>
+      <h2 class="group-title" data-reveal>Upcoming Events</h2>
       {upcomingEvents.length > 0 ? (
         <div class="listing-grid two-up">
           {upcomingEvents.map((event) => <EventCard event={event} />)}
@@ -37,7 +37,7 @@ const pastEvents = events.filter((item) => item.data.status === "past");
 
   <section class="page-section">
     <div class="shell">
-      <h2 class="group-title">Past Events</h2>
+      <h2 class="group-title" data-reveal>Past Events</h2>
       {pastEvents.length > 0 ? (
         <div class="listing-grid two-up">
           {pastEvents.map((event) => <EventCard event={event} />)}

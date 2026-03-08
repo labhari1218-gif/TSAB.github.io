@@ -27,14 +27,14 @@ const secondaryExternalAttrs =
   secondaryResolvedHref && isExternalHref(secondaryResolvedHref) ? { target: "_blank", rel: "noreferrer" } : {};
 ---
 
-<section class="surface-panel callout-panel">
+<section class="surface-panel callout-panel ambient-grid" data-spotlight data-reveal data-tilt>
   <div class="eyebrow">{eyebrow}</div>
   <h2>{title}</h2>
   <p>{copy}</p>
   <div class="actions">
-    <a class="button primary" href={primaryResolvedHref} {...primaryExternalAttrs}>{primaryLabel}</a>
+    <a class="button primary" href={primaryResolvedHref} data-magnetic {...primaryExternalAttrs}>{primaryLabel}</a>
     {secondaryHref && secondaryLabel && (
-      <a class="button secondary" href={secondaryResolvedHref} {...secondaryExternalAttrs}>{secondaryLabel}</a>
+      <a class="button secondary" href={secondaryResolvedHref} data-magnetic {...secondaryExternalAttrs}>{secondaryLabel}</a>
     )}
   </div>
 </section>

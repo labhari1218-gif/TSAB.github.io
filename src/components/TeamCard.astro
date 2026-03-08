@@ -18,7 +18,7 @@ const { member } = Astro.props;
 const contactHref = member.data.contactUrl ? withBase(member.data.contactUrl) : undefined;
 ---
 
-<article class="card team-card">
+<article class="card team-card" data-spotlight data-tilt data-reveal>
   <img
     src={withBase(member.data.photo ?? "/images/team/team-placeholder.svg")}
     alt={member.data.photo ? `${member.data.name} portrait` : `${member.data.name} profile image`}
@@ -49,16 +49,18 @@ const contactHref = member.data.contactUrl ? withBase(member.data.contactUrl) : 
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+    border-bottom: 1px solid rgba(21, 58, 120, 0.08);
     background: rgba(21, 58, 120, 0.1);
   }
 
   .content {
-    padding: 1.2rem;
+    padding: 1.25rem;
   }
 
   h3 {
     margin: 0;
-    font-size: 1.15rem;
+    font-size: 1.38rem;
+    font-family: "Cormorant Garamond", serif;
   }
 
   .role {

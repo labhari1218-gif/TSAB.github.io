@@ -10,13 +10,13 @@ const settings = await getSiteSettings();
 <MainLayout title="About TSAB">
   <section class="page-section">
     <div class="shell split-hero">
-      <div class="surface-panel reveal">
+      <div class="surface-panel ambient-grid" data-spotlight data-reveal>
         <div class="eyebrow">{settings.aboutIntro.eyebrow}</div>
         <h1>{settings.aboutIntro.title}</h1>
         <p class="accent-te">{settings.aboutIntro.accentTe}</p>
         {settings.aboutIntro.body.map((paragraph) => <p>{paragraph}</p>)}
       </div>
-      <div class="card timeline-card reveal stagger-1">
+      <div class="card timeline-card ambient-grid" data-spotlight data-tilt data-reveal data-reveal-delay="1">
         <p class="eyebrow">Mission</p>
         <ol>
           {settings.aboutMissionPoints.map((point) => <li>{point}</li>)}
@@ -33,11 +33,11 @@ const settings = await getSiteSettings();
         copy="TSAB is not only about events. It is a community platform that helps Telugu students in Bhopal stay connected, supported, represented, and encouraged to grow."
       />
       <div class="listing-grid two-up about-grid">
-        <article class="card prose-panel">
+        <article class="card prose-panel" data-spotlight data-tilt data-reveal>
           <h2>{settings.aboutIntro.whoCanJoinTitle}</h2>
           <p>{settings.aboutIntro.whoCanJoinBody}</p>
         </article>
-        <article class="card prose-panel">
+        <article class="card prose-panel" data-spotlight data-tilt data-reveal data-reveal-delay="1">
           <h2>{settings.aboutIntro.familiarSpaceTitle}</h2>
           <p>{settings.aboutIntro.familiarSpaceBody}</p>
         </article>
@@ -48,15 +48,15 @@ const settings = await getSiteSettings();
   <section class="page-section">
     <div class="shell">
       <div class="listing-grid three-up">
-        <article class="card pillar-card">
+        <article class="card pillar-card" data-spotlight data-tilt data-reveal>
           <h2>Belonging</h2>
           <p>Help students feel at home quickly by connecting them to people, updates, and a familiar cultural space.</p>
         </article>
-        <article class="card pillar-card">
+        <article class="card pillar-card" data-spotlight data-tilt data-reveal data-reveal-delay="1">
           <h2>Growth</h2>
           <p>Share opportunities, useful student resources, and achiever stories that encourage academic and professional growth.</p>
         </article>
-        <article class="card pillar-card">
+        <article class="card pillar-card" data-spotlight data-tilt data-reveal data-reveal-delay="2">
           <h2>Culture</h2>
           <p>Celebrate Telugu festivals, language, identity, and heritage in a way that feels warm, modern, and visible.</p>
         </article>

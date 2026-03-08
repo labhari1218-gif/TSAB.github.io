@@ -9,7 +9,7 @@ interface Props {
 const { eyebrow, title, copy, compact = false } = Astro.props;
 ---
 
-<div class:list={["section-intro", "motif", compact && "compact"]}>
+<div class:list={["section-intro", "motif", compact && "compact"]} data-reveal>
   <div class="eyebrow">{eyebrow}</div>
   <h2 class="section-heading">{title}</h2>
   <p class="section-copy">{copy}</p>

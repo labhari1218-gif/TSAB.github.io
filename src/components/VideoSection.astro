@@ -11,12 +11,12 @@ const parsedVideos = parseVideoLinks(videos);
 ---
 
 {parsedVideos.length > 0 && (
-  <section class="video-section">
+  <section class="video-section" data-reveal>
     <h2>{title}</h2>
     <div class="listing-grid two-up">
       {parsedVideos.map((video) =>
         video.kind === "youtube" && video.embedUrl ? (
-          <article class="card video-card">
+          <article class="card video-card" data-spotlight data-tilt>
             <div class="embed-shell">
               <iframe
                 src={video.embedUrl}
@@ -29,16 +29,16 @@ const parsedVideos = parseVideoLinks(videos);
             </div>
             <div class="content">
               <h3>{video.title}</h3>
-              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer">Watch on YouTube</a>
+              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer" data-magnetic>Watch on YouTube</a>
             </div>
           </article>
         ) : (
-          <article class="card video-card">
+          <article class="card video-card" data-spotlight data-tilt>
             <div class="fallback-panel">
               <p class="eyebrow">Video Link</p>
               <h3>{video.title}</h3>
               <p>Open the external video link to watch this recap or event clip.</p>
-              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer">Watch Video</a>
+              <a class="button secondary" href={video.url} target="_blank" rel="noreferrer" data-magnetic>Watch Video</a>
             </div>
           </article>
         )

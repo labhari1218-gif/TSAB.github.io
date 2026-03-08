@@ -5,16 +5,21 @@ import { getSiteSettings } from "@/lib/settings";
 import { withBase } from "@/lib/site";
 
 const settings = await getSiteSettings();
+const themeTags = settings.homeThemes.map((theme) => theme.title).slice(0, 4);
 ---
 
 <section class="page-section compact">
-  <div class="shell split-hero">
-    <div class="hero-copy surface-panel reveal">
+  <div class="shell split-hero hero-shell">
+    <div class="hero-copy surface-panel ambient-grid" data-spotlight data-reveal>
+      <div class="hero-noise"></div>
       <div class="eyebrow">{settings.fullName}</div>
       <h1>{settings.headlineEn}</h1>
       <p class="association-line">{settings.fullName}</p>
       <p class="headline-te">{settings.headlineTe}</p>
       <p>{settings.heroSupportingText}</p>
+      <ul class="hero-tags">
+        {themeTags.map((tag) => <li>{tag}</li>)}
+      </ul>
       <div class="actions">
         <PrimaryButton href={settings.primaryCtas.join.href} label={settings.primaryCtas.join.label} />
         <SecondaryButton href={settings.primaryCtas.events.href} label={settings.primaryCtas.events.label} />
@@ -29,23 +34,45 @@ const settings = await getSiteSettings();
       </div>
     </div>
 
-    <aside class="wordmark card reveal stagger-1">
+    <aside class="wordmark card" data-spotlight data-tilt data-reveal data-reveal-delay="1">
+      <div class="crest-ring"></div>
       <p class="label">Together we belong</p>
       <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} />
       <h2>{settings.name}</h2>
       <p class="subhead">{settings.fullName}</p>
       <p class="brand-te">{settings.headlineTe}</p>
       <p class="description">{settings.taglineEn}</p>
+      <div class="pulse-strip">
+        <span>Community pulse</span>
+        <strong>Visible. Useful. Welcoming.</strong>
+      </div>
     </aside>
   </div>
 </section>
 
 <style>
+  .hero-shell {
+    align-items: stretch;
+  }
+
+  .hero-copy {
+    min-height: clamp(28rem, 54vw, 38rem);
+  }
+
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 18%, rgba(214, 163, 58, 0.12), transparent 24%),
+      radial-gradient(circle at 82% 22%, rgba(21, 58, 120, 0.12), transparent 28%);
+    pointer-events: none;
+  }
+
   h1 {
     margin: 1rem 0 0;
     max-width: 10ch;
     font-family: "Cormorant Garamond", serif;
-    font-size: clamp(2.95rem, 6vw, 5.6rem);
+    font-size: clamp(3.05rem, 6vw, 5.9rem);
     line-height: 0.9;
     letter-spacing: -0.04em;
   }
@@ -70,6 +97,24 @@ const settings = await getSiteSettings();
     margin-top: 0.35rem;
     color: var(--color-brand);
     font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    padding: 0;
+    margin: 1rem 0 0;
+    list-style: none;
+  }
+
+  .hero-tags li {
+    padding: 0.42rem 0.72rem;
+    border-radius: 999px;
+    background: rgba(21, 58, 120, 0.08);
+    color: var(--color-brand);
+    font-size: 0.8rem;
     font-weight: 700;
   }
 
@@ -109,6 +154,17 @@ const settings = await getSiteSettings();
     background:
       radial-gradient(circle at top right, rgba(214, 163, 58, 0.18), transparent 28%),
       linear-gradient(180deg, rgba(21, 58, 120, 0.05), rgba(255, 255, 255, 0.96));
+  }
+
+  .crest-ring {
+    position: absolute;
+    inset: 1.4rem 1.4rem auto auto;
+    width: 5rem;
+    aspect-ratio: 1;
+    border-radius: 999px;
+    border: 1px solid rgba(21, 58, 120, 0.16);
+    background: radial-gradient(circle, rgba(214, 163, 58, 0.14), transparent 66%);
+    pointer-events: none;
   }
 
   .label {
@@ -153,6 +209,27 @@ const settings = await getSiteSettings();
     color: var(--color-muted);
   }
 
+  .pulse-strip {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(21, 58, 120, 0.1);
+  }
+
+  .pulse-strip span {
+    color: var(--color-muted);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .pulse-strip strong {
+    color: var(--color-brand);
+    font-size: 1rem;
+  }
+
   @media (max-width: 720px) {
     h1 {
       font-size: clamp(2.6rem, 12vw, 4.1rem);
@@ -170,6 +247,10 @@ const settings = await getSiteSettings();
 
     .hero-copy p {
       font-size: 1rem;
+    }
+
+    .hero-tags {
+      margin-top: 0.85rem;
     }
 
     .actions {

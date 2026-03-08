@@ -20,7 +20,7 @@ const { Content } = await render(album);
 <MainLayout title={`${album.data.title} | TSAB Gallery`} description={album.data.summary}>
   <section class="page-section">
     <div class="shell detail-shell">
-      <div class="surface-panel">
+      <div class="surface-panel ambient-grid" data-spotlight data-reveal>
         <div class="eyebrow">Gallery Album</div>
         <h1>{album.data.title}</h1>
         <p class="meta">{formatDate(album.data.eventDate)} · {album.data.year}</p>
@@ -31,8 +31,8 @@ const { Content } = await render(album);
 
   <section class="page-section compact">
     <div class="shell gallery-grid">
-      {album.data.images.map((image) => (
-        <figure class="card gallery-item">
+      {album.data.images.map((image, index) => (
+        <figure class="card gallery-item" data-spotlight data-tilt data-reveal data-reveal-delay={String(index % 3)}>
           <img src={withBase(image.src)} alt={image.alt} />
         </figure>
       ))}

@@ -43,12 +43,12 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
   {pinnedAnnouncement && (
     <section class="page-section compact">
       <div class="shell">
-        <div class="surface-panel reveal">
+        <div class="surface-panel ambient-grid" data-spotlight data-reveal>
           <div class="eyebrow">Pinned Update</div>
           <h2 class="panel-title">{pinnedAnnouncement.data.title}</h2>
           <p class="panel-copy">{pinnedAnnouncement.data.summary}</p>
           {pinnedAnnouncement.data.ctaLabel && pinnedAnnouncement.data.ctaUrl && (
-            <a class="button secondary" href={withBase(pinnedAnnouncement.data.ctaUrl)}>{pinnedAnnouncement.data.ctaLabel}</a>
+            <a class="button secondary" href={withBase(pinnedAnnouncement.data.ctaUrl)} data-magnetic>{pinnedAnnouncement.data.ctaLabel}</a>
           )}
         </div>
       </div>
@@ -63,7 +63,7 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
         copy="TSAB is here to help students feel connected, stay informed, celebrate culture, and grow together through a stronger student network."
       />
       <div class="listing-grid four-up feature-grid">
-        {settings.homeThemes.map((card) => <FeatureCard {...card} />)}
+        {settings.homeThemes.map((card, index) => <FeatureCard {...card} index={index} />)}
       </div>
     </div>
   </section>
@@ -75,7 +75,7 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
         title="What the community can join, explore, and celebrate right now."
         copy="TSAB highlights the next thing to attend, the next opportunity worth opening, and the student stories that deserve visibility."
       />
-      <div class="listing-grid three-up">
+      <div class="listing-grid three-up spotlight-grid">
         {featuredEvent && <EventCard event={featuredEvent} />}
         {featuredOpportunity && <OpportunityCard opportunity={featuredOpportunity} />}
         {featuredAchiever && <AchieverCard achiever={featuredAchiever} />}
@@ -85,12 +85,14 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
 
   <section class="page-section">
     <div class="shell split-about">
-      <SectionIntro
-        eyebrow="About TSAB"
-        title={settings.aboutIntro.title}
-        copy={settings.aboutIntro.body[0]}
-      />
-      <div class="card values-card">
+      <div class="about-intro-shell">
+        <SectionIntro
+          eyebrow="About TSAB"
+          title={settings.aboutIntro.title}
+          copy={settings.aboutIntro.body[0]}
+        />
+      </div>
+      <div class="card values-card ambient-grid" data-spotlight data-tilt data-reveal data-reveal-delay="1">
         <p class="about-accent">{settings.aboutIntro.accentTe}</p>
         <ul>
           {settings.aboutMissionPoints.map((value) => <li>{value}</li>)}
@@ -106,7 +108,7 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
         title="Memories deserve a clean archive, not a cluttered feed."
         copy="Albums help TSAB preserve festivals, gatherings, service moments, and community milestones in a way that stays easy to browse later."
       />
-      <div class="listing-grid two-up">
+      <div class="listing-grid two-up gallery-preview-grid">
         {featuredAlbums.map((album) => <GalleryAlbumCard album={album} />)}
       </div>
     </div>
@@ -119,7 +121,7 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
         title="Four clear pathways into the TSAB community."
         copy="The public site should show how TSAB works: one space for belonging, one for opportunities, one for volunteers, and one for media memories."
       />
-      <div class="listing-grid two-up">
+      <div class="listing-grid two-up pathways-grid">
         {groups.map((group) => <GroupCard group={group} />)}
       </div>
     </div>
@@ -157,6 +159,12 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
     margin-top: 2rem;
   }
 
+  .spotlight-grid,
+  .gallery-preview-grid,
+  .pathways-grid {
+    position: relative;
+  }
+
   .split-about {
     display: grid;
     gap: 1.5rem;
@@ -186,6 +194,11 @@ const groups = [...(await getCollection("groups"))].sort((a, b) => a.data.sortOr
   @media (min-width: 880px) {
     .split-about {
       grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .feature-grid > :first-child {
+      grid-column: span 2;
+      min-height: 21rem;
     }
   }
 </style>

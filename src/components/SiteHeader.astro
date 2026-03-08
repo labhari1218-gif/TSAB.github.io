@@ -13,7 +13,7 @@ const settings = await getSiteSettings();
 
 <header class="site-header">
   <div class="shell nav-shell">
-    <a class="brand" href={withBase("/")}>
+    <a class="brand" href={withBase("/")} data-reveal>
       <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} />
       <div class="brand-copy">
         <strong>{settings.name}</strong>
@@ -22,7 +22,7 @@ const settings = await getSiteSettings();
       </div>
     </a>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-magnetic>
       Menu
     </button>
 
@@ -32,6 +32,7 @@ const settings = await getSiteSettings();
           href={withBase(link.href)}
           class:list={[normalizedPath === link.href && "active"]}
           aria-current={normalizedPath === link.href ? "page" : undefined}
+          data-magnetic
         >
           {link.label}
         </a>
@@ -57,32 +58,39 @@ const settings = await getSiteSettings();
   .site-header {
     position: sticky;
     top: 0;
-    z-index: 20;
-    backdrop-filter: blur(18px);
-    background: rgba(251, 248, 241, 0.84);
+    z-index: 32;
+    backdrop-filter: blur(22px);
+    background: rgba(251, 248, 241, 0.72);
     border-bottom: 1px solid rgba(21, 58, 120, 0.08);
+    transition: background var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  }
+
+  .site-header[data-scrolled="true"] {
+    background: rgba(251, 248, 241, 0.92);
+    box-shadow: 0 12px 34px rgba(9, 20, 43, 0.08);
   }
 
   .nav-shell {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, auto) auto;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
+    gap: 1.1rem;
+    padding: 0.95rem 0;
   }
 
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.9rem;
+    gap: 0.82rem;
     min-width: 0;
   }
 
   .brand img {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 0.75rem;
+    width: 3.05rem;
+    height: 3.05rem;
+    border-radius: 0.95rem;
     object-fit: cover;
+    box-shadow: 0 10px 26px rgba(13, 37, 83, 0.15);
   }
 
   .brand strong,
@@ -93,38 +101,41 @@ const settings = await getSiteSettings();
 
   .brand strong {
     color: var(--color-brand);
-    font-size: 1.05rem;
+    font-size: 1.14rem;
+    font-weight: 800;
   }
 
   .full-name {
-    margin-top: 0.12rem;
+    margin-top: 0.1rem;
     color: var(--color-brand-strong);
-    font-size: 0.78rem;
+    font-size: 0.84rem;
     font-weight: 700;
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   .brand small {
+    margin-top: 0.08rem;
     color: var(--color-muted);
-    font-size: 0.72rem;
+    font-size: 0.73rem;
   }
 
   .menu-toggle {
     justify-self: end;
-    padding: 0.7rem 1rem;
-    border: 1px solid rgba(21, 58, 120, 0.14);
+    padding: 0.72rem 1.05rem;
+    border: 1px solid rgba(21, 58, 120, 0.12);
     border-radius: 999px;
-    background: white;
+    background: rgba(255, 255, 255, 0.72);
     color: var(--color-brand);
     font: inherit;
-    font-weight: 700;
+    font-weight: 800;
+    box-shadow: 0 10px 24px rgba(9, 20, 43, 0.06);
   }
 
   .nav-links {
     grid-column: 1 / -1;
     display: none;
-    gap: 0.4rem;
-    padding-top: 0.2rem;
+    gap: 0.42rem;
+    padding-top: 0.35rem;
   }
 
   .nav-links[data-open="true"] {
@@ -132,22 +143,24 @@ const settings = await getSiteSettings();
   }
 
   .nav-links a {
-    padding: 0.85rem 1rem;
+    padding: 0.78rem 0.98rem;
     border-radius: 999px;
     color: var(--color-muted);
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 0.92rem;
+    white-space: nowrap;
   }
 
   .nav-links a.active,
   .nav-links a:hover,
   .nav-links a:focus-visible {
-    background: rgba(21, 58, 120, 0.08);
+    background: rgba(21, 58, 120, 0.09);
     color: var(--color-brand);
   }
 
   @media (min-width: 980px) {
     .nav-shell {
-      grid-template-columns: auto 1fr;
+      grid-template-columns: minmax(250px, auto) 1fr;
     }
 
     .menu-toggle {
@@ -159,8 +172,24 @@ const settings = await getSiteSettings();
       display: flex;
       justify-content: end;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       padding-top: 0;
+      min-width: 0;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .brand img {
+      width: 2.7rem;
+      height: 2.7rem;
+    }
+
+    .brand strong {
+      font-size: 1rem;
+    }
+
+    .full-name {
+      font-size: 0.76rem;
     }
   }
 </style>

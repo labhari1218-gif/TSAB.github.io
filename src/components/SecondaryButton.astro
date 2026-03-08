@@ -11,4 +11,4 @@ const resolvedHref = withBase(href);
 const externalAttrs = isExternalHref(resolvedHref) ? { target: "_blank", rel: "noreferrer" } : {};
 ---
 
-<a class="button secondary" href={resolvedHref} {...externalAttrs}>{label}</a>
+<a class="button secondary" href={resolvedHref} data-magnetic {...externalAttrs}>{label}</a>
