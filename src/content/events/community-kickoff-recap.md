@@ -1,15 +1,16 @@
 ---
-title: "Community Kickoff Recap"
-date: "2025-11-18"
-location: "Bhopal Student Center"
-summary: "A recap page for a completed TSAB community gathering with key moments, photos, and follow-up links."
-coverImage: "/images/placeholders/poster-forum.svg"
-coverAlt: "Community kickoff recap cover for TSAB"
+title: "Community "
+date: 2025-11-18
+location: Bhopal Student Center
+summary: A recap page for a completed TSAB community gathering with key moments,
+  photos, and follow-up links.
+coverImage: /images/placeholders/poster-forum.svg
+coverAlt: Community kickoff recap cover for TSAB
 tags:
-  - "Recap"
-  - "Onboarding"
-  - "Student Network"
-status: "past"
+  - Recap
+  - Onboarding
+  - Student Network
+status: past
 featured: false
 ---
 
