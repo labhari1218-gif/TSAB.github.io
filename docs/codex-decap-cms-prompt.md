@@ -1,18 +1,21 @@
 # Codex Prompt For Full Decap CMS Setup From Zero
 
 Use this file when:
-- you have built a website/app repo
+- you already have a website or app repo
 - nothing is set up yet for Decap CMS
 - there is no `oauth/` folder yet
 - there is no Vercel OAuth helper yet
-- no GitHub OAuth App exists yet
-- no Vercel environment variables exist yet
-- you want Codex to implement the code and also guide you through every manual step
+- there is no GitHub OAuth App yet
+- there are no Vercel environment variables yet
+- the human using the repo may not know GitHub, Vercel, OAuth, or deployment flows
 
-This file has two parts:
-
-1. a prompt you can paste into Codex
-2. a manual human checklist for the parts Codex cannot do by itself
+This file is meant to prevent the exact mistakes that happened during the TSAB setup:
+- wrong `base_url`
+- wrong callback URL
+- wrong Vercel root directory
+- wrong env var names
+- debugging OAuth before `/api/ping` works
+- leaving instructional draft copy in the public website
 
 ---
 
@@ -20,6 +23,16 @@ This file has two parts:
 
 ```text
 I need you to add a complete Decap CMS setup to this project from zero.
+
+Assume the human user may not know:
+- GitHub navigation
+- GitHub Actions
+- GitHub OAuth Apps
+- Vercel project setup
+- Vercel environment variables
+- how to test or debug login issues
+
+So your job is not only to write the code. Your job is also to guide the human clearly, step by step, with exact clicks, exact values, exact URLs, and exact troubleshooting order.
 
 Current state:
 - The app/site repo already exists.
@@ -29,22 +42,22 @@ Current state:
 - There is NO Vercel OAuth helper project yet.
 - There is NO GitHub OAuth App yet.
 - There are NO Vercel environment variables yet.
-- I need both implementation and step-by-step instructions for everything manual.
+- I need both implementation and human guidance.
 
 Your job:
-1. Inspect the existing repo first and understand:
+1. Inspect the repo first and understand:
    - framework
    - routes
    - content model
    - where editable text currently lives
-   - current deployment setup
-2. Implement Decap CMS in a way that fits this project instead of forcing a generic blog structure.
-3. Move editable hardcoded site settings into CMS-managed content/data files where appropriate.
-4. Add collections for the real content types used by this project.
+   - how the site is currently deployed
+2. Implement Decap CMS in a way that fits this repo instead of forcing a generic blog structure.
+3. Move editable hardcoded settings and public copy into CMS-managed data files where appropriate.
+4. Add Decap collections for the real content types used by the project.
 5. Add a separate OAuth helper service for GitHub login.
-6. Document the exact manual steps I must do in GitHub and Vercel after your code changes.
-7. Tell me the exact URLs, exact field values, and exact button clicks I must use.
-8. Do not stop at partial setup. Finish code, docs, and validation together.
+6. Add safe debugging and validation so OAuth issues are easy to diagnose.
+7. Add documentation that a beginner can follow without guessing.
+8. Do not stop at partial setup. Finish the code, docs, validation, and the human instructions together.
 
 Implementation requirements:
 - Add:
@@ -57,12 +70,13 @@ Implementation requirements:
   - `oauth/vercel.json`
   - `oauth/README.md`
 - Use a separate OAuth helper deployment on Vercel.
-- Add safe environment variable validation.
-- Never log secret values.
+- Add env var validation.
+- Never log secrets.
 - If diagnostics are needed, log only booleans or missing env var names.
+- Add a small `/api/ping` endpoint so routing can be tested before OAuth debugging.
 
 Critical auth rules you must follow:
-- In Decap config, `backend.base_url` must be the OAuth helper ORIGIN only.
+- In Decap config, `backend.base_url` must be the bare OAuth helper origin only.
 - Do NOT set `base_url` to `/api`.
 - Put the path into `auth_endpoint`.
 - Correct pattern:
@@ -71,7 +85,7 @@ Critical auth rules you must follow:
 - GitHub OAuth callback should normally be:
   - `https://your-oauth-helper.vercel.app/api/callback`
 - The OAuth helper env var `COMPLETE_URL` must exactly match that callback URL.
-- Add `/api/ping` so deployment can be tested before login debugging.
+- The GitHub OAuth App callback URL must match that same callback URL exactly.
 
 Required env vars to support:
 - `ORIGIN`
@@ -85,19 +99,20 @@ If any required env vars are missing:
 - do not print secret values
 
 Required docs:
-- update or add docs in `docs/`
-- include an editor guide
-- include an admin/OAuth setup guide
+- add or update docs in `docs/`
+- include a beginner editor guide
+- include a beginner admin/OAuth setup guide
 - include troubleshooting for popup/login issues
+- include a final “what to do next” checklist
 
 What I need in your final answer:
 1. What code/files you created or changed
 2. What still must be done manually
-3. A step-by-step manual setup section for GitHub OAuth App:
+3. A step-by-step GitHub OAuth App setup guide:
    - where to click
    - what to type
    - what exact URLs to enter
-4. A step-by-step manual setup section for Vercel:
+4. A step-by-step Vercel setup guide:
    - how to create/import the OAuth helper project
    - what root directory to use
    - what framework preset to choose
@@ -113,29 +128,35 @@ What I need in your final answer:
    - the CMS page
    - `/api/ping`
    - `/api/auth`
-7. A quick troubleshooting section:
+7. A troubleshooting section in this exact order:
+   - `/api/ping` 404
+   - `/api/auth` 500
    - popup opens but CMS does not log in
    - callback page hangs
-   - 404 on `/api/ping`
-   - 500 on `/api/auth`
-   - env var mismatch
+   - wrong env var names
    - wrong `base_url`
+   - stale Vercel deployment
+8. A final section called:
+   - `Do These Steps In Order`
 
-Also:
-- If this repo is missing structure needed for CMS-managed settings, create it.
-- If helpful, add a reusable markdown guide inside the repo for future reuse.
-- Prefer the smallest robust implementation.
+Important:
+- Treat the human like a beginner and remove ambiguity.
+- Do not say “configure this in Vercel” without also saying exactly where to click.
+- Do not assume the user knows where GitHub OAuth Apps live.
+- Do not leave temporary debug copy or instructional copy in public-facing website pages.
+- If you introduce placeholder content, make it easy to replace and keep it out of the public UI tone.
+- Validate the site with build checks and browser checks before finishing.
 ```
 
 ---
 
-## What Codex Should Build In The Repo
+## What Codex Should Usually Build
 
-If the project is using GitHub as the Decap backend, Codex should usually create:
+If the project uses the GitHub backend for Decap, Codex should usually create:
 
 - `public/admin/index.html`
 - `public/admin/config.yml`
-- a CMS-managed settings/content file if branding or page copy is currently hardcoded
+- a CMS-managed site settings file if the website currently hardcodes editable public text
 - `oauth/api/auth.js`
 - `oauth/api/callback.js`
 - `oauth/api/ping.js`
@@ -144,16 +165,16 @@ If the project is using GitHub as the Decap backend, Codex should usually create
 - one or more docs files under `docs/`
 
 The OAuth helper is separate from the main site.
-The public site can stay on GitHub Pages, Vercel, Netlify, or anywhere else.
-The OAuth helper only exists to complete GitHub login for Decap.
+The public site may stay on GitHub Pages, Vercel, Netlify, or another host.
+The OAuth helper exists only to complete GitHub login for Decap.
 
 ---
 
 ## Human Setup Guide After Codex Finishes
 
-This is the part you do manually in the browser after Codex finishes the repo code.
+This is the manual part the human does in the browser after Codex finishes the repo code.
 
-### Step 1: Push The Repo To GitHub
+## Step 1: Push The Repo To GitHub
 
 If the repo is not pushed yet:
 
@@ -173,19 +194,19 @@ If Codex created an `oauth/` folder, deploy that folder as its own Vercel projec
 
 ### What to click in Vercel
 
-1. Open [https://vercel.com/dashboard](https://vercel.com/dashboard)
+1. Open `https://vercel.com/dashboard`
 2. Click `Add New...`
 3. Click `Project`
 4. Import your GitHub repo
 5. When Vercel asks for project settings:
-   - `Framework Preset`:
-     use `Other`
-   - `Root Directory`:
-     enter `oauth`
-   - `Build Command`:
-     leave default unless Codex explicitly says otherwise
-   - `Output Directory`:
-     leave blank unless Codex explicitly says otherwise
+   - `Framework Preset`
+     - choose `Other`
+   - `Root Directory`
+     - enter `oauth`
+   - `Build Command`
+     - leave default unless Codex explicitly says otherwise
+   - `Output Directory`
+     - leave blank unless Codex explicitly says otherwise
 6. Click `Deploy`
 
 ### What you should get
@@ -203,7 +224,7 @@ You will use that domain in:
 
 ## Step 3: Test The OAuth Helper Before Anything Else
 
-Before GitHub login testing, check whether the helper is alive.
+Before GitHub login testing, confirm the helper is alive.
 
 Open:
 
@@ -217,7 +238,7 @@ Expected result:
 
 ### If `/api/ping` gives 404
 
-The Vercel project setup is wrong. Check:
+The Vercel project setup is wrong. Check this in order:
 - root directory is exactly `oauth`
 - the `oauth/api/` folder exists in the repo
 - the latest deployment is using the latest commit
@@ -244,13 +265,13 @@ This is done in GitHub, not in the repo.
 Use these values:
 
 - `Application name`
-  - use something clear, for example:
+  - example:
     `My Site Decap CMS`
 
 - `Homepage URL`
-  - use your public CMS page, for example:
+  - use your public CMS page
+  - example:
     `https://YOUR-USERNAME.github.io/YOUR-REPO/admin/`
-  - if your main site is hosted elsewhere, use that public `/admin/` URL
 
 - `Application description`
   - optional
@@ -348,11 +369,11 @@ Example:
 
 ### Important
 
-If the code uses these exact env var names, then names like:
+If the code expects these exact env var names, then names like:
 - `GITHUB_CLIENT_ID`
 - `GITHUB_CLIENT_SECRET`
 
-will not work unless the code was written to use them.
+will not work unless the code was explicitly written to use them.
 
 ### Environments
 
@@ -372,7 +393,7 @@ After adding environment variables, you must redeploy.
 2. Open the latest deployment
 3. Click `Redeploy`
 
-Environment variable changes do not fix old deployments automatically.
+Environment variable changes do not update old deployments automatically.
 
 ---
 
@@ -445,7 +466,7 @@ If `base_url` includes `/api`, the popup may complete GitHub auth but the CMS wi
 
 ## Step 9: Push Config Changes If Needed
 
-If you changed `public/admin/config.yml` locally:
+If Codex changed `public/admin/config.yml` locally:
 
 ```bash
 git add public/admin/config.yml
@@ -521,24 +542,18 @@ Check:
 
 ---
 
-## Reusable Template Values
+## Do These Steps In Order
 
-Replace these placeholders for any future project:
-
-- `YOUR-USERNAME`
-- `YOUR-REPO`
-- `YOUR-OAUTH-DOMAIN`
-
-Examples:
-
-- Public CMS page:
-  `https://YOUR-USERNAME.github.io/YOUR-REPO/admin/`
-- OAuth callback:
-  `https://YOUR-OAUTH-DOMAIN/api/callback`
-- Ping:
-  `https://YOUR-OAUTH-DOMAIN/api/ping`
-- Auth:
-  `https://YOUR-OAUTH-DOMAIN/api/auth`
+1. Push the repo
+2. Deploy the `oauth/` folder to Vercel
+3. Test `/api/ping`
+4. Create the GitHub OAuth App
+5. Add Vercel env vars
+6. Redeploy Vercel
+7. Verify `public/admin/config.yml`
+8. Open `/admin/`
+9. Log in with GitHub
+10. Confirm collections appear
 
 ---
 
@@ -547,12 +562,12 @@ Examples:
 If you want a short version to paste quickly, use this:
 
 ```text
-Add Decap CMS to this repo from zero. Assume nothing is set up yet. Build the full code integration, add a separate Vercel OAuth helper under `oauth/`, create `/api/ping`, `/api/auth`, and `/api/callback`, move editable hardcoded settings into CMS-managed content where appropriate, and document every manual step I must do in GitHub and Vercel. In your final answer, give me exact click-by-click steps for creating the GitHub OAuth App, creating the Vercel project, adding env vars, redeploying, and testing login. Very important: set Decap `base_url` to the bare OAuth helper origin only, and put the path into `auth_endpoint` like `api/auth`. Do not use `base_url` with `/api`.
+Add Decap CMS to this repo from zero. Assume nothing is set up yet. Build the full code integration, add a separate Vercel OAuth helper under `oauth/`, create `/api/ping`, `/api/auth`, and `/api/callback`, move editable hardcoded settings into CMS-managed content where appropriate, and document every manual step I must do in GitHub and Vercel. Treat the human as a beginner: give exact click-by-click instructions, exact field values, exact URLs, exact env var names, exact test order, and a troubleshooting sequence. Very important: set Decap `base_url` to the bare OAuth helper origin only, and put the path into `auth_endpoint` like `api/auth`. Do not use `base_url` with `/api`. Also make sure no internal instructional copy is left in the public site.
 ```
 
 ---
 
-## The Main Mistake To Avoid
+## Main Mistakes To Avoid
 
 Do not set:
 
@@ -568,4 +583,10 @@ base_url: https://your-oauth-helper.vercel.app
 auth_endpoint: api/auth
 ```
 
-That exact difference avoids the popup origin mismatch that causes GitHub login to appear successful while Decap still stays logged out.
+Do not:
+- debug GitHub OAuth before `/api/ping` works
+- assume env var names
+- assume the user knows GitHub or Vercel navigation
+- leave planning or reviewer-style copy in the public UI
+
+That exact discipline prevents most repeat issues.
