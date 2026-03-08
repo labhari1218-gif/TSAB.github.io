@@ -5,7 +5,7 @@ location: Bhopal Student Center
 summary: A recap page for a completed TSAB community gathering with key moments,
   photos, and follow-up links.
 coverImage: /images/placeholders/poster-forum.svg
-coverAlt: Community kickoff recap cover for TSAB
+coverAlt: Community recap cover for TSAB
 tags:
   - Recap
   - Onboarding
