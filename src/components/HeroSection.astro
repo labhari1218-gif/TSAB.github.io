@@ -37,7 +37,7 @@ const themeTags = settings.homeThemes.map((theme) => theme.title).slice(0, 4);
     <aside class="wordmark card" data-spotlight data-tilt data-reveal data-reveal-delay="1">
       <div class="crest-ring"></div>
       <p class="label">Together we belong</p>
-      <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} />
+      <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} class="hero-logo" />
       <h2>{settings.name}</h2>
       <p class="subhead">{settings.fullName}</p>
       <p class="brand-te">{settings.headlineTe}</p>
@@ -176,12 +176,39 @@ const themeTags = settings.homeThemes.map((theme) => theme.title).slice(0, 4);
     text-transform: uppercase;
   }
 
-  .wordmark img {
+  @keyframes heroLogoEntrance {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes heroLogoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .wordmark .hero-logo {
     width: 5rem;
     height: 5rem;
     object-fit: cover;
     border-radius: 1.1rem;
     box-shadow: 0 12px 28px rgba(13, 37, 83, 0.16);
+    animation: 
+      heroLogoEntrance 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards,
+      heroLogoFloat 5s ease-in-out infinite alternate 1s;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease;
+    will-change: transform, opacity;
+  }
+
+  .wordmark .hero-logo:hover {
+    transform: scale(1.08) translateY(-4px);
+    box-shadow: 0 18px 36px rgba(13, 37, 83, 0.22);
+    animation-play-state: paused, paused;
   }
 
   .wordmark h2 {
