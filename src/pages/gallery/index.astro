@@ -14,8 +14,8 @@ const albums = sortByDateDesc(await getCollection("galleryAlbums"));
     <div class="shell">
       <SectionIntro
         eyebrow="Gallery"
-        title="A clean archive for albums, recaps, and visual memory."
-        copy="Gallery pages are organized by album so the homepage stays focused while the archive remains easy to browse."
+        title="Gallery"
+        copy="A collection of TSAB memories — celebrations, gatherings, shared moments, and the joy of being together. Every album tells the story of our community."
       />
     </div>
   </section>
@@ -29,7 +29,7 @@ const albums = sortByDateDesc(await getCollection("galleryAlbums"));
       ) : (
         <EmptyState
           title="No gallery albums yet"
-          copy="Add gallery album entries and corresponding image files to start building the public archive."
+          copy="Gallery albums and community moments will appear here as TSAB memories are added."
         />
       )}
     </div>

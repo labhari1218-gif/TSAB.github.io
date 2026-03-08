@@ -15,4 +15,4 @@ year: 2025
 featured: true
 ---
 
-Keep albums event-based so the archive stays clear, browsable, and easy to maintain.
+These moments reflect the spirit of TSAB service, teamwork, and students coming together for the community.

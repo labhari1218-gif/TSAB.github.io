@@ -3,10 +3,10 @@ title: "Scholarship & Resource Bulletin"
 category: "scholarship"
 organization: "Student Support Desk"
 deadline: "2026-06-01"
-summary: "A curated scholarship or resource listing that helps students quickly assess eligibility, timing, and next steps."
+summary: "A scholarship or resource listing that helps students understand eligibility, timing, and the next step clearly."
 sourceUrl: "https://chat.whatsapp.com/HkYytjbF0Q4Er85aiOt3Ry"
 featured: false
 isActive: true
 ---
 
-Use the body to explain eligibility, deadlines, and the official source link in a quick, readable format.
+This update helps students review eligibility, deadlines, and the official source link without confusion.

@@ -7,11 +7,11 @@ import { isExternalHref, withBase } from "@/lib/site";
 
 const settings = await getSiteSettings();
 const directChannel =
-  settings.socialLinks.find((link) => /forum|whatsapp/i.test(link.label)) ??
+  settings.socialLinks.find((link) => /community|forum|whatsapp/i.test(link.label)) ??
   settings.socialLinks[0] ?? { label: "See Working Groups", href: "/working-groups/" };
 const contactCopy = settings.email
-  ? `For direct queries, you can reach TSAB at ${settings.email}. You can also use the join and working-group links on this page to find the right pathway.`
-  : "Use the public TSAB channels on this page to join the community, find the right working group, and stay connected.";
+  ? `For direct questions, you can reach TSAB at ${settings.email}. You can also use the links here to stay connected and find the right next step.`
+  : "Use the TSAB community links here to stay connected, explore opportunities, and find the right way to take part.";
 ---
 
 <MainLayout title="Join TSAB">
@@ -19,13 +19,14 @@ const contactCopy = settings.email
     <div class="shell">
       <SectionIntro
         eyebrow="Join / Contact"
-        title="Joining TSAB is simple, warm, and easy to understand."
-        copy="Whether you want to join the community, volunteer, submit media, or nominate an achiever, you can find the right next step here."
+        title="Join TSAB"
+        copy="Be part of a Telugu student community that helps you connect, participate, and grow in Bhopal. Whether you are new to the city or already part of the community, TSAB gives you a place to belong."
       />
+      <p class="join-te">మన వాళ్లతో మన బంధం</p>
       <div class="listing-grid two-up action-grid">
         {settings.joinActions.map((action, index) => (
           <article class="card action-card" data-spotlight data-tilt data-reveal data-reveal-delay={String(index > 2 ? 2 : index)}>
-            <p class="action-label">{index === 0 ? "Start Here" : "Public Pathway"}</p>
+            <p class="action-label">{index === 0 ? "Start Here" : "Get Involved"}</p>
             <h2>{action.title}</h2>
             <p>{action.description}</p>
             <a
@@ -47,12 +48,12 @@ const contactCopy = settings.email
     <div class="shell">
       <CalloutPanel
         eyebrow="Contact"
-        title="Use the public contact channels to stay connected with TSAB."
+        title="Connect With Us"
         copy={contactCopy}
         primaryHref={settings.email ? `mailto:${settings.email}` : directChannel.href}
         primaryLabel={settings.email ? "Email TSAB" : directChannel.label}
         secondaryHref="/working-groups/"
-        secondaryLabel="See Working Groups"
+        secondaryLabel="Get Involved"
       />
     </div>
   </section>
@@ -61,6 +62,12 @@ const contactCopy = settings.email
 <style>
   .action-grid {
     margin-top: 2rem;
+  }
+
+  .join-te {
+    margin: 1rem 0 0;
+    color: var(--color-brand);
+    font-weight: 700;
   }
 
   .action-card {

@@ -16,8 +16,8 @@ const pastEvents = events.filter((item) => item.data.status === "past");
     <div class="shell">
       <SectionIntro
         eyebrow="Events"
-        title="Upcoming plans first. Past memories preserved second."
-        copy="TSAB events keep the community active and visible, while also preserving a useful record of what has already happened."
+        title="Events"
+        copy="From cultural celebrations to student meetups, TSAB events bring the community together through shared experiences and meaningful memories."
       />
     </div>
   </section>
@@ -43,7 +43,7 @@ const pastEvents = events.filter((item) => item.data.status === "past");
           {pastEvents.map((event) => <EventCard event={event} />)}
         </div>
       ) : (
-        <EmptyState title="No archived events yet" copy="Past event recaps will appear here once they are added to the collection." />
+        <EmptyState title="No archived events yet" copy="A look back at the celebrations, gatherings, and moments that shaped our community will appear here." />
       )}
     </div>
   </section>

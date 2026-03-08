@@ -1,5 +1,5 @@
 ---
-title: "Community "
+title: "Community Gathering"
 date: 2025-11-18
 location: Bhopal Student Center
 summary: A recap page for a completed TSAB community gathering with key moments,
@@ -14,4 +14,4 @@ status: past
 featured: false
 ---
 
-Use past-event pages as clean archives with a short summary, memorable highlights, and a link to the related gallery album.
+This recap captures a TSAB community gathering that brought students together for conversation, connection, and shared moments in Bhopal.

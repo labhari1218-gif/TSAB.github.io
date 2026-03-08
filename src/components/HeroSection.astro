@@ -15,7 +15,7 @@ const themeTags = settings.homeThemes.map((theme) => theme.title).slice(0, 4);
       <div class="eyebrow">{settings.fullName}</div>
       <h1>{settings.headlineEn}</h1>
       <p class="association-line">{settings.fullName}</p>
-      <p class="headline-te">{settings.headlineTe}</p>
+      <p class="headline-te">{settings.taglineTe}</p>
       <p>{settings.heroSupportingText}</p>
       <ul class="hero-tags">
         {themeTags.map((tag) => <li>{tag}</li>)}
@@ -40,11 +40,10 @@ const themeTags = settings.homeThemes.map((theme) => theme.title).slice(0, 4);
       <img src={withBase(settings.logoPath)} alt={`${settings.fullName} logo`} class="hero-logo" />
       <h2>{settings.name}</h2>
       <p class="subhead">{settings.fullName}</p>
-      <p class="brand-te">{settings.headlineTe}</p>
       <p class="description">{settings.taglineEn}</p>
       <div class="pulse-strip">
-        <span>Community pulse</span>
-        <strong>Visible. Useful. Welcoming.</strong>
+        <span>TSAB</span>
+        <strong>Friendship, culture, and support.</strong>
       </div>
     </aside>
   </div>

@@ -10,4 +10,4 @@ photoAlt: "Featured TSAB achiever portrait"
 featured: true
 ---
 
-Use achiever stories to explain what the member accomplished, why it matters, and how the milestone can inspire other students.
+This story celebrates a member of the TSAB community whose journey reflects dedication, progress, and the spirit of shared growth.

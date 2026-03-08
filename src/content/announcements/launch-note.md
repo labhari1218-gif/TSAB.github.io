@@ -1,7 +1,7 @@
 ---
-title: "Welcome to the TSAB website"
+title: "Welcome to TSAB"
 date: "2026-03-07"
-summary: "TSAB now has a public home for community updates, events, opportunities, achiever stories, and working-group pathways."
+summary: "Stay connected with community updates, events, opportunities, achiever stories, and student-led activities across TSAB."
 ctaLabel: "Read About TSAB"
 ctaUrl: "/about/"
 pinned: true
